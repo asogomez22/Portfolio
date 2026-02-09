@@ -1,46 +1,63 @@
-# Astro Starter Kit: Basics
+﻿# Portfolio — Astro + React + Tailwind
 
-```sh
-npm create astro@latest -- --template basics
-```
+Landing/portfolio personal construido con **Astro** y componentes **React**, estilado con **Tailwind CSS**. Incluye secciones de presentación, experiencia, proyectos, conocimientos y contacto, con animaciones y efectos visuales.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## ✨ Destacados
+- One‑page layout con secciones: **Hero**, **Sobre mí**, **Experiencia**, **Proyectos**, **Conocimientos**, **Contacto** y **Footer**.
+- Componentes interactivos (texto brillante, presión tipográfica, fondo animado, carrusel de logos, blur gradual).
+- Diseño responsive y centrado en la estética visual.
+- Assets en `public/` (imágenes de proyectos, logos, CV, etc.).
 
-## 🚀 Project Structure
+## 🧰 Stack
+- **Astro 5**
+- **React 19**
+- **Tailwind CSS 4**
+- Extras: **GSAP**, **OGL**, **Motion**, **mathjs**, **react-icons**
 
-Inside of your Astro project, you'll see the following folders and files:
-
+## 📁 Estructura del proyecto
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+public/
+  ├─ afp.png
+  ├─ portfolio.png
+  ├─ lift.png
+  ├─ aurea.png
+  ├─ *.svg (logos)
+  └─ cv.pdf
+src/
+  ├─ components/
+  │  ├─ Welcome.astro      # Contenido principal y secciones
+  │  ├─ Header.astro
+  │  ├─ Footer.astro
+  │  └─ React/              # Componentes React reutilizables
+  ├─ layouts/
+  │  └─ Layout.astro
+  └─ pages/
+     └─ index.astro
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🚀 Cómo ejecutar en local
+```bash
+npm install
+npm run dev
+```
+Abre `http://localhost:4321`.
 
-## 🧞 Commands
+## 🏗️ Build y preview
+```bash
+npm run build
+npm run preview
+```
 
-All commands are run from the root of the project, from a terminal:
+## ✍️ Personalización rápida
+- **Contenido principal:** `src/components/Welcome.astro`
+- **Header:** `src/components/Header.astro`
+- **Footer:** `src/components/Footer.astro`
+- **Imágenes/Logos/CV:** carpeta `public/`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## ✅ Notas
+- El carrusel de logos usa assets de `public/*.svg`.
+- El botón de CV apunta a `public/cv.pdf`.
+- La página de pruebas/experimentos está en `src/components/Prueba.astro`.
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+© Alejandro Sopeña. 
