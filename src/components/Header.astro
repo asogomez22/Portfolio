@@ -1,0 +1,224 @@
+---
+const links = [
+  { label: "Sobre mí", href: "#sobre" },
+  { label: "Experiencia", href: "#experiencia" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Conocimientos", href: "#conocimientos" },
+  { label: "Certificaciones", href: "#certificaciones" },
+];
+---
+
+<header
+  data-header
+  class="fixed top-[8%] sm:top-[8%] inset-x-0 z-10000000 px-3 sm:px-4"
+>
+  <div class="mx-auto w-full max-w-6xl">
+    <div class="relative rounded-full border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/20">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 rounded-full bg-linear-to-b from-white/12 to-transparent"
+      ></div>
+
+      <div class="relative px-2.5 sm:px-3.5">
+        <div class="h-14 sm:h-15 md:h-16 flex items-center justify-between gap-2">
+          <!-- Brand -->
+          <a
+            href="#top"
+            class="inline-flex items-center gap-2 rounded-full px-3 py-2 text-white/90 hover:text-white transition
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            aria-label="Ir al inicio"
+          >
+            <span class="text-sm md:text-[15px] font-semibold tracking-tight">asogom.es</span>
+          </a>
+
+          <!-- Nav desktop (scroll si no cabe) -->
+          <nav
+            class="hidden md:flex min-w-0 flex-1 items-center justify-center"
+            aria-label="Secciones"
+          >
+            <div
+              class="flex items-center gap-1 overflow-x-auto whitespace-nowrap px-1
+                     [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {links.map((l) => (
+                <a
+                  href={l.href}
+                  data-link
+                  class="navlink relative rounded-full px-2.5 lg:px-3 py-2 text-xs lg:text-sm font-semibold text-white/80
+                         hover:text-white transition whitespace-nowrap
+                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40
+                         after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-1 after:h-0.5 after:w-0
+                         after:rounded-full after:bg-white/90 after:transition-[width] after:duration-300
+                         hover:after:w-6 data-[active=true]:text-white data-[active=true]:after:w-6"
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-2">
+            <a
+              href="#contacto"
+              class="hidden sm:inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90
+                     hover:bg-white/20 hover:text-white transition
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              Contactar
+            </a>
+
+            <button
+              type="button"
+              data-menu-btn
+              aria-label="Abrir menú"
+              aria-controls="mobileNav"
+              aria-expanded="false"
+              class="md:hidden inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 p-2 text-white/90
+                     hover:bg-white/20 transition
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="opacity-90">
+                <path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile panel (animado) -->
+    <div
+      id="mobileNav"
+      data-mobile
+      data-open="false"
+      class="md:hidden mt-3 overflow-hidden rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/20
+             transition-[max-height,opacity,transform] duration-250 ease-out
+             max-h-0 opacity-0 -translate-y-1"
+    >
+      <div class="p-2">
+        <div class="grid gap-1">
+          {links.map((l) => (
+            <a
+              href={l.href}
+              data-link
+              class="rounded-xl px-4 py-3 text-[15px] font-semibold text-white/85
+                     hover:bg-white/10 hover:text-white transition
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+
+        <div class="mt-2 border-t border-white/10 pt-2">
+          <a
+            href="#contacto"
+            class="block rounded-xl px-4 py-3 text-[15px] font-semibold text-white/90 bg-white/10
+                   hover:bg-white/20 transition
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+          >
+            Contactar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const header = document.querySelector("[data-header]");
+  const btn = document.querySelector("[data-menu-btn]");
+  const mobile = document.querySelector("[data-mobile]");
+  const mobileNavId = "mobileNav";
+
+  const setOpen = (open) => {
+    if (!btn || !mobile) return;
+
+    btn.setAttribute("aria-expanded", String(open));
+    mobile.dataset.open = open ? "true" : "false";
+
+    // animación con max-height/opacity/transform
+    if (open) {
+      mobile.classList.remove("max-h-0", "opacity-0", "-translate-y-1");
+      mobile.classList.add("max-h-[520px]", "opacity-100", "translate-y-0");
+    } else {
+      mobile.classList.add("max-h-0", "opacity-0", "-translate-y-1");
+      mobile.classList.remove("max-h-[520px]", "opacity-100", "translate-y-0");
+    }
+  };
+
+  const isOpen = () => btn?.getAttribute("aria-expanded") === "true";
+
+  if (btn && mobile) {
+    btn.setAttribute("aria-controls", mobileNavId);
+
+    btn.addEventListener("click", () => setOpen(!isOpen()));
+
+    // cerrar al clicar un link
+    mobile.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => setOpen(false));
+    });
+
+    // cerrar con ESC
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    // cerrar al clicar fuera
+    window.addEventListener("click", (e) => {
+      if (!isOpen()) return;
+      const target = e.target;
+      const clickedInside = header && header.contains(target);
+      if (!clickedInside) setOpen(false);
+    });
+
+    // cerrar al pasar a desktop
+    const mq = window.matchMedia("(min-width: 768px)");
+    mq.addEventListener("change", (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+
+  // Active link por secciones visibles
+  const navLinks = Array.from(document.querySelectorAll("[data-link]"));
+
+  const sections = [
+    "#sobre",
+    "#experiencia",
+    "#proyectos",
+    "#conocimientos",
+    "#certificaciones",
+    "#contacto",
+  ]
+    .map((sel) => document.querySelector(sel))
+    .filter(Boolean);
+
+  const setActive = (id) => {
+    navLinks.forEach((a) => {
+      const href = a.getAttribute("href");
+      const active = href === "#" + id;
+      a.dataset.active = active ? "true" : "false";
+    });
+  };
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      setActive(visible.target.id);
+    },
+    {
+      threshold: [0.35, 0.5, 0.65],
+      // Compensa el header fijo (así no “activa” demasiado pronto)
+      rootMargin: "-25% 0px -55% 0px",
+    }
+  );
+
+  sections.forEach((s) => io.observe(s));
+
+  const hash = location.hash?.replace("#", "");
+  if (hash) setActive(hash);
+</script>

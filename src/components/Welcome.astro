@@ -1,210 +1,681 @@
----
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
----
+﻿---
+import Grainient from "./React/Grainient";
+import TextPressure from "./React/TextPressure";
+import ShinyText from "./React/ShinyText";
+import Header from "./Header.astro";
+import CircularText from "./React/CircularText";
+import GradualBlur from "./React/GradualBlur";
+import LogoLoop from "./React/LogoLoop";
+import Footer from './Footer.astro'
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
+const imageLogos = [
+  { src: "/react.svg", alt: "React", href: "https://react.dev" },
+  {
+    src: "/js.svg",
+    alt: "JavaScript",
+    href: "https://developer.mozilla.org/docs/Web/JavaScript",
+  },
+  { src: "/python.svg", alt: "Python", href: "https://www.python.org" },
+  { src: "/java.svg", alt: "Java", href: "https://www.oracle.com/java/" },
+  {
+    src: "/tailwind.svg",
+    alt: "Tailwind CSS",
+    href: "https://tailwindcss.com",
+  },
+  {
+    src: "/html.svg",
+    alt: "HTML5",
+    href: "https://developer.mozilla.org/docs/Web/HTML",
+  },
+  {
+    src: "/css.svg",
+    alt: "CSS3",
+    href: "https://developer.mozilla.org/docs/Web/CSS",
+  },
+  { src: "/laravel.svg", alt: "Laravel", href: "https://laravel.com" },
+  { src: "/sql.svg", alt: "SQL", href: "https://www.postgresql.org" },
+  { src: "/astro.svg", alt: "Astro", href: "https://astro.build" },
+];
 
-	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 5.0?</h2>
-		<p>
-			From content layers to server islands, click to learn more about the new features and
-			improvements in Astro 5.0
-		</p>
-	</a>
-</div>
+const tagsSobre = ["Creativo", "Curioso", "Aprendizaje continuo"];
+
+const inetumBullets = [
+  "Proyecto Full Stack y formaciones",
+  "Entrada a proyecto real para cliente como Full Stack",
+];
+
+const projects = [
+  {
+    title: "Appetite For Posts",
+    img: "/afp.png",
+    desc: "Blog dedicado a Guns N'Roses. Publicación de artículos y exploración de la banda.",
+    tags: ["React", "FastAPI", "GSAP", "CRUD"],
+    links: [
+      { label: "GitHub", href: "https://github.com/asogomez22/Appetite-For-Posts" },
+    ],
+  },
+  {
+    title: "Portfolio",
+    img: "/portfolio.png",
+    desc: "Landing personal con foco en diseño, rendimiento y experiencia visual.",
+    tags: ["UI/UX", "Animaciones", "Responsive", "Astro"],
+    links: [
+      { label: "GitHub", href: "https://github.com/asogomez22/portfolio" },
+      { label: "Ver web", href: "https://asogom.es" },
+    ],
+  },
+  {
+    title: "Lift Ingeniería",
+    img: "/lift.png",
+    desc: "Web con autenticación y sistema para que el cliente pueda añadir y gestionar contenido.",
+    tags: ["Laravel", "Tailwind", "Escalable"],
+    links: [{ label: "Ver web", href: "https://lift.tarracowebs.com" }],
+  },
+  {
+    title: "Aurea",
+    img: "/aurea.png",
+    desc: "Tienda Online con panel de administracion y pasarela de pago integrada",
+    tags: ["Laravel", "Tailwind", "Stripe"],
+    links: [
+      { label: "Ver web", href: "hhttps://tiendaprueba.tarracowebs.com" },
+    ],
+  },
+];
+
+const marqueeRepeats = 10;
+---
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
+  :global(.circularText) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
+  .marquee-track {
+    animation: marquee 45s linear infinite;
+  }
 
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
-
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
-
-	#links {
-		display: flex;
-		gap: 16px;
-	}
-
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
-	}
-
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
-
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
-
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
-
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
-
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
-
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
-
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
-
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
-
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
-
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
-
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
-
-		#links {
-			flex-wrap: wrap;
-		}
-
-		#links a.button {
-			padding: 14px 18px;
-		}
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
-
-		h1 {
-			line-height: 1.5;
-		}
-	}
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
 </style>
+
+<main
+  class="overflow-x-hidden "
+>
+
+<div class="absolute bottom-0 left-0 w-full h-[20vh] z-100000 bg-linear-to-t from-cyan-700 to-transparent"></div>
+  <!-- HERO -->
+  <section
+    class="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center gap-4 py-16"
+  >
+    <Header />
+
+    <div class="absolute inset-0 z-0">
+      <Grainient
+        client:only="react"
+        color1="#294b66"
+        color2="#4b8aaa"
+        color3="#297c85"
+        timeSpeed={0.25}
+        colorBalance={-0.01}
+        warpStrength={1}
+        warpFrequency={5}
+        warpSpeed={2}
+        warpAmplitude={50}
+        blendAngle={-1}
+        blendSoftness={0.05}
+        rotationAmount={500}
+        noiseScale={4}
+        grainAmount={0.1}
+        grainScale={2}
+        grainAnimated={false}
+        contrast={1.5}
+        gamma={1}
+        saturation={1.05}
+        centerX={0}
+        centerY={0}
+        zoom={0.9}
+      />
+    </div>
+
+    <div
+      class="relative z-10 flex flex-col items-center overflow-visible mt-20"
+    >
+      <ShinyText
+        client:only="react"
+        className="text-6xl sm:text-7xl md:text-8xl font-bold leading-[1.1] py-2 text-center"
+        text="Alejandro Sopeña"
+        speed={2}
+        delay={0}
+        color="#f0f7ff"
+        shineColor="#ffffff"
+        spread={120}
+        direction="left"
+        yoyo={false}
+        pauseOnHover={false}
+        disabled={false}
+      />
+    </div>
+
+    <div class="relative z-10 w-full max-w-lg flex">
+      <TextPressure
+        client:only="react"
+        text="Desarrollador Web"
+        flex
+        alpha={false}
+        stroke={false}
+        width
+        weight
+        italic
+        textColor="#ffffff"
+        strokeColor="#5227FF"
+        minFontSize={6}
+      />
+    </div>
+
+    <div class="relative z-10 mt-6 flex items-center justify-center">
+      <a
+        href="/cv.pdf"
+        class="inline-flex items-center rounded-full text-white/85 bg-white/20 backdrop-blur-md px-8 py-3.5 text-lg font-semibold shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-white/25 hover:text-white"
+        download
+      >
+        Descargar CV
+      </a>
+    </div>
+
+    <div
+      class="relative w-full max-w-lg flex items-center mt-5 justify-center animate-bounce z-20"
+    >
+      <svg
+        class="-rotate-90"
+        xmlns="http://www.w3.org/2000/svg"
+        height="36"
+        viewBox="0 -960 960 960"
+        width="36"
+        fill="#e3e3e3"
+      >
+        <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path>
+      </svg>
+    </div>
+  </section>
+
+  <div class="bg-linear-to-b from-cyan-700 via-cyan-950 to-zinc-950">
+
+
+  <section id="sobre" class="relative overflow-hidden">
+    <!-- DOT GRID visible -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 z-0 opacity-25
+			bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)]
+			bg-size-[18px_18px]"
+    >
+    </div>
+
+    <div
+      class="relative z-10 mx-auto max-w-6xl px-6 py-12 md:px-10 md:py-16"
+    >
+      <div class="grid items-center gap-12 md:grid-cols-12">
+        <!-- IZQUIERDA: FOTO -->
+        <div class="md:col-span-5">
+          <div class="flex items-center justify-center">
+            <div class="relative h-70 w-80 sm:h-75 sm:w-85 md:h-90 md:w-105">
+              <CircularText
+                client:only="react"
+                text="ALEJANDRO*SOPEÑA*GÓMEZ*"
+                onHover="slowDown"
+                spinDuration={20}
+                className="circularText"
+              />
+
+              <div
+                class="pointer-events-none absolute inset-0 grid place-items-center"
+                aria-hidden="true"
+              >
+                <div class="relative pointer-events-auto">
+                  <div
+                    class="absolute inset-0 rounded-full border border-white/15 bg-white/10 backdrop-blur-md shadow-xl shadow-black/25"
+                  >
+                  </div>
+
+                  <img
+                    src="/img/alejandro.jpg"
+                    alt="Foto de Alejandro"
+                    class="relative h-44 w-44 sm:h-52 sm:w-52 md:h-60 md:w-60 rounded-full border border-white/20 object-cover shadow-2xl shadow-black/35 transition hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DERECHA: TEXTO -->
+        <div class="md:col-span-7 text-white">
+
+
+          <h2 class="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">
+            Sobre mí
+          </h2>
+
+          <div
+            class="mt-6 space-y-4 text-white/85 text-base md:text-lg leading-relaxed"
+          >
+            <p>
+              Me considero una persona creativa, curiosa y comprometida con el
+              aprendizaje continuo. Disfruto resolviendo problemas y colaborando
+              en equipo para lograr resultados de calidad.
+            </p>
+            <p>
+              Además de la programación, me interesan el diseño, la música y la
+              tecnología. Siempre busco nuevos retos para mejorar mis
+              habilidades.
+            </p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-2">
+            {
+              tagsSobre.map((t) => (
+                <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm text-white/85 backdrop-blur transition hover:bg-white/15">
+                  {t}
+                </span>
+              ))
+            }
+          </div>
+
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a
+              href="#experiencia"
+              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              Ver experiencia <span aria-hidden="true" class="opacity-70"
+                >→</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencia" class="relative min-h-screen overflow-hidden">
+    {/* patrón de puntos */}
+<div
+  aria-hidden="true"
+  class="pointer-events-none absolute inset-0 z-0 opacity-20
+         bg-[radial-gradient(rgba(255,255,255,0.65)_1px,transparent_1px)]
+         bg-size-[18px_18px]"
+></div>
+
+
+    <div class="relative z-10 mx-auto max-w-6xl px-6 md:px-10 py-16 md:py-24">
+      {/* HEADER */}
+      <header class="mx-auto max-w-3xl text-center text-white">
+        <p
+          class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70"
+        >
+          <span class="h-px w-10 bg-white/30"></span>
+          Experiencia
+          <span class="h-px w-10 bg-white/30"></span>
+        </p>
+
+        <h2 class="text-3xl font-extrabold leading-tight md:text-4xl">
+          Trabajo + proyectos reales
+        </h2>
+
+        <p class="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
+          Experiencia en desarrollo web (prácticas
+          + proyectos propios).
+        </p>
+
+      </header>
+
+      {/* CONTENIDO */}
+      <div class="mt-12 mx-auto max-w-4xl space-y-6">
+        {/* INETUM */}
+        <article
+          class="rounded-3xl border border-white/12 bg-white/10 p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7
+				transition hover:bg-white/12 hover:border-white/18"
+        >
+          <div
+            class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
+          >
+            <div class="min-w-0">
+              <p class="text-lg font-extrabold tracking-tight text-white">
+                Inetum
+              </p>
+              <p class="mt-1 text-sm text-white/70">
+                <span class="font-semibold text-white/85"
+                  >Prácticas — Desarrollo Web</span
+                >
+              </p>
+            </div>
+
+            <span
+              class="w-fit rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80"
+            >
+              Octubre 2025 — Actualidad
+            </span>
+          </div>
+
+          <div aria-hidden="true" class="mt-5 h-px w-full bg-white/10"></div>
+
+          <ul class="mt-5 grid gap-3 text-white/75 md:grid-cols-2">
+            {
+              inetumBullets.map((item) => (
+                <li class="flex gap-3">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/60" />
+                  <span class="text-sm leading-relaxed">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+
+          {/* Tags discretos (sin vacío) */}
+          <div class="mt-5 flex flex-wrap gap-2">
+            {
+              ["Trabajo en equipo", "Full Stack"].map((t) => (
+                <span class="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-white/75">
+                  {t}
+                </span>
+              ))
+            }
+          </div>
+        </article>
+
+        {/* PROYECTOS */}
+        <article
+          class="rounded-3xl border border-white/12 bg-white/10 p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7"
+        >
+          <div class="flex items-end justify-between gap-3">
+            <div>
+              <p class="text-lg font-extrabold text-white">Proyectos</p>
+              <p class="mt-1 text-sm text-white/70">
+                Selección de trabajos con enfoque en producto y UI.
+              </p>
+            </div>
+          </div>
+
+          {/* GRID */}
+          <div
+            class="mt-6 mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 justify-items-center"
+          >
+            {
+              projects.map((p) => (
+                <article
+                  class="group w-full max-w-130 overflow-hidden rounded-2xl border border-white/12 bg-white/10
+						shadow-md shadow-black/20 transition
+						hover:-translate-y-0.5 hover:bg-white/15 hover:border-white/20
+						focus-within:ring-2 focus-within:ring-white/35"
+                >
+                  {/* IMAGEN */}
+                  <div class="relative h-40 w-full bg-black/20">
+                    <img
+                      src={p.img}
+                      alt={p.title}
+                      loading="lazy"
+                      class="h-full w-full object-cover"
+                    />
+                    <div
+                      aria-hidden="true"
+                      class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-black/10 to-transparent"
+                    />
+                  </div>
+
+                  <div class="p-4 md:p-5">
+                    <div class="flex items-start justify-between gap-3">
+                      <p class="text-base md:text-lg font-extrabold tracking-tight text-white">
+                        {p.title}
+                      </p>
+                    </div>
+
+                    <p class="mt-2 text-sm leading-relaxed text-white/75">
+                      {p.desc}
+                    </p>
+
+                    <div class="mt-3 flex flex-wrap gap-2">
+                      {p.tags.map((t) => (
+                        <span class="rounded-full border border-white/12 bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-white/80">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      {p.links.map((l) => (
+                        <a
+                          href={l.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-bold text-white/90
+								backdrop-blur-sm transition hover:bg-white/15
+								focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+                        >
+                          <span class="max-w-56 truncate">{l.label}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="conocimientos" class="section relative overflow-hidden">
+    <div class="section-content">
+      <div class="section-inner relative">
+<div
+  aria-hidden="true"
+  class="pointer-events-none absolute inset-0 z-0 opacity-20
+         bg-[radial-gradient(rgba(255,255,255,0.65)_1px,transparent_1px)]
+         bg-size-[18px_18px]"
+></div>
+
+
+        <div
+          class="relative z-10 mx-auto w-screen max-w-none px-0 py-18 md:py-24"
+        >
+          <!-- Header -->
+          <div class="mx-auto max-w-3xl text-center text-white">
+            <p
+              class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70"
+            >
+              <span class="h-0.5 w-10 bg-white/30"></span>
+              Conocimientos
+              <span class="h-0.5 w-10 bg-white/30"></span>
+            </p>
+
+            <h2 class="text-3xl font-extrabold leading-tight md:text-4xl">
+              Stack y herramientas que uso
+            </h2>
+            <div class="h-10"></div>
+          </div>
+          <LogoLoop
+            client:only="react"
+            logos={imageLogos}
+            className="w-full"
+            width="100vw"
+            speed={100}
+            direction="left"
+            logoHeight={60}
+            gap={60}
+            hoverSpeed={0}
+            scaleOnHover
+            fadeOut
+            fadeOutColor="#"
+            ariaLabel="Technology partners"
+          />
+
+          <div class="h-10"></div>
+          <!-- Vertical loop with deceleration on hover -->
+          <LogoLoop
+            client:only="react"
+            logos={imageLogos}
+            className="mt-8 w-full"
+            width="100vw"
+            speed={100}
+            direction="right"
+            logoHeight={60}
+            gap={60}
+            hoverSpeed={0}
+            fadeOut
+            fadeOutColor="·"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+{/* ===================== CONTACTO ===================== */}
+<section
+  id="contacto"
+  class="relative min-h-screen overflow-hidden"
+>
+  {/* DOT GRID */}
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 z-0 opacity-25
+           bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)]
+           [background-size:18px_18px]"
+  ></div>
+
+  {/* Overlay */}
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 z-0 bg-linear-to-b"
+  ></div>
+
+  <div class="relative z-10 mx-auto max-w-6xl px-6 md:px-10 py-16 md:py-24">
+    {/* Header */}
+    <div class="mx-auto max-w-3xl text-center text-white">
+      <p class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70">
+        <span class="h-px w-10 bg-white/30"></span>
+        Contacto
+        <span class="h-px w-10 bg-white/30"></span>
+      </p>
+
+      <h2 class="text-3xl font-extrabold leading-tight md:text-4xl">
+        Hablemos de tu idea
+      </h2>
+
+      <p class="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
+        Cuéntame qué necesitas
+      </p>
+    </div>
+
+  <div class="mt-12 grid gap-6 lg:grid-cols-12">
+
+
+      {/* Columna derecha: formulario */}
+      <div class="lg:col-span-12 flex justify-center">
+        <form
+          class="w-full max-w-2xl rounded-3xl border border-white/12 bg-white/10 p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7"
+          method="post"
+          action="#"
+        >
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="md:col-span-1">
+              <label for="name" class="text-xs font-semibold text-white/80">
+                Nombre
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Tu nombre"
+                class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45
+                       outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
+              />
+            </div>
+
+            <div class="md:col-span-1">
+              <label for="email" class="text-xs font-semibold text-white/80">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="tucorreo@ejemplo.com"
+                class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45
+                       outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="subject" class="text-xs font-semibold text-white/80">
+                Asunto
+              </label>
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                placeholder="Ej: Web con panel + login"
+                class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45
+                       outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="message" class="text-xs font-semibold text-white/80">
+                Mensaje
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Cuéntame el objetivo, funcionalidades y plazo aproximado..."
+                class="mt-2 w-full resize-none rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45
+                       outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/15 px-6 py-3 text-sm font-extrabold text-white
+                     backdrop-blur-sm shadow-lg shadow-black/20 transition
+                     hover:-translate-y-0.5 hover:bg-white/20
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+            >
+              Enviar mensaje
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+<Footer/>
+  </div>
+
+</main>
+
+<GradualBlur
+  client:only="react"
+  target="page"
+  position="bottom"
+  height="4rem"
+  strength={1.6}
+  divCount={4}
+  curve="bezier"
+  exponential={true}
+  opacity={1}
+/>
