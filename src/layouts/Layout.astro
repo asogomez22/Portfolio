@@ -1,29 +1,64 @@
 ---
 import "../styles/global.css";
-
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content="Portfolio de Alejandro Sopeña. Desarrollador Web Full Stack en Tarragona. Especializado en crear experiencias digitales únicas, rápidas y accesibles."
+    />
+    <meta
+      name="keywords"
+      content="Desarrollador Web, Tarragona, Full Stack, Frontend, Backend, Astro, React, Laravel, Diseño Web, Programador"
+    />
+    <meta name="author" content="Alejandro Sopeña" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://asogom.es/" />
+    <meta
+      property="og:title"
+      content="Portfolio Alejandro Sopeña - Desarrollador Web"
+    />
+    <meta
+      property="og:description"
+      content="Desarrollador Web Full Stack en Tarragona. Transformo ideas en webs modernas y funcionales."
+    />
+    <meta property="og:image" content="/portfolio.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://asogom.es/" />
+    <meta
+      property="twitter:title"
+      content="Portfolio Alejandro Sopeña - Desarrollador Web"
+    />
+    <meta
+      property="twitter:description"
+      content="Desarrollador Web Full Stack en Tarragona. Transformo ideas en webs modernas y funcionales."
+    />
+    <meta property="twitter:image" content="/portfolio.png" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Portfolio Alejandro Sopeña</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		min-height: 100%;
-		overflow-x: hidden;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+  }
 </style>
