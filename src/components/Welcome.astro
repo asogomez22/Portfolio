@@ -6,7 +6,7 @@ import Header from "./Header.astro";
 import CircularText from "./React/CircularText";
 import GradualBlur from "./React/GradualBlur";
 import LogoLoop from "./React/LogoLoop";
-import Footer from './Footer.astro'
+import Footer from "./Footer.astro";
 
 const imageLogos = [
   { src: "/react.svg", alt: "React", href: "https://react.dev" },
@@ -51,7 +51,10 @@ const projects = [
     desc: "Blog dedicado a Guns N'Roses. Publicación de artículos y exploración de la banda.",
     tags: ["React", "FastAPI", "GSAP", "CRUD"],
     links: [
-      { label: "GitHub", href: "https://github.com/asogomez22/Appetite-For-Posts" },
+      {
+        label: "GitHub",
+        href: "https://github.com/asogomez22/Appetite-For-Posts",
+      },
     ],
   },
   {
@@ -110,14 +113,16 @@ const marqueeRepeats = 10;
   }
 </style>
 
-<main
-  class="overflow-x-hidden "
->
+<main class="overflow-x-hidden">
+  <!-- degradado inferior (más corto en móvil) -->
+  <div
+    class="absolute bottom-0 left-0 w-full h-[14vh] sm:h-[20vh] z-100000 bg-linear-to-t from-cyan-700 to-transparent"
+  >
+  </div>
 
-<div class="absolute bottom-0 left-0 w-full h-[20vh] z-100000 bg-linear-to-t from-cyan-700 to-transparent"></div>
   <!-- HERO -->
   <section
-    class="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center gap-4 py-16"
+    class="relative min-h-[100svh] md:min-h-[100dvh] w-full overflow-hidden flex flex-col items-center justify-center gap-4 py-20 sm:py-24"
   >
     <Header />
 
@@ -150,11 +155,11 @@ const marqueeRepeats = 10;
     </div>
 
     <div
-      class="relative z-10 flex flex-col items-center overflow-visible mt-20"
+      class="relative z-10 flex flex-col items-center overflow-visible mt-16 sm:mt-20 px-4"
     >
       <ShinyText
         client:only="react"
-        className="text-6xl sm:text-7xl md:text-8xl font-bold leading-[1.1] py-2 text-center"
+        className="text-4xl xs:text-5xl sm:text-6xl md:text-8xl font-bold leading-[1.08] py-2 text-center"
         text="Alejandro Sopeña"
         speed={2}
         delay={0}
@@ -168,7 +173,9 @@ const marqueeRepeats = 10;
       />
     </div>
 
-    <div class="relative z-10 w-full max-w-lg flex">
+    <div
+      class="relative z-10 w-full max-w-[18rem] xs:max-w-sm sm:max-w-lg flex px-4"
+    >
       <TextPressure
         client:only="react"
         text="Desarrollador Web"
@@ -184,10 +191,10 @@ const marqueeRepeats = 10;
       />
     </div>
 
-    <div class="relative z-10 mt-6 flex items-center justify-center">
+    <div class="relative z-10 mt-6 flex items-center justify-center px-4">
       <a
         href="/cv.pdf"
-        class="inline-flex items-center rounded-full text-white/85 bg-white/20 backdrop-blur-md px-8 py-3.5 text-lg font-semibold shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-white/25 hover:text-white"
+        class="inline-flex items-center rounded-full text-white/85 bg-white/20 backdrop-blur-md px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-white/25 hover:text-white"
         download
       >
         Descargar CV
@@ -195,14 +202,14 @@ const marqueeRepeats = 10;
     </div>
 
     <div
-      class="relative w-full max-w-lg flex items-center mt-5 justify-center animate-bounce z-20"
+      class="relative w-full max-w-lg flex items-center mt-8 sm:mt-5 justify-center animate-bounce z-20"
     >
       <svg
         class="-rotate-90"
         xmlns="http://www.w3.org/2000/svg"
-        height="36"
+        height="34"
         viewBox="0 -960 960 960"
-        width="36"
+        width="34"
         fill="#e3e3e3"
       >
         <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path>
@@ -211,462 +218,506 @@ const marqueeRepeats = 10;
   </section>
 
   <div class="bg-linear-to-b from-cyan-700 via-cyan-950 to-zinc-950">
+    <!-- SOBRE -->
+    <section id="sobre" class="relative overflow-hidden">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 z-0 opacity-25
+               bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)]
+               bg-size-[18px_18px]"
+      >
+      </div>
 
-
-  <section id="sobre" class="relative overflow-hidden">
-    <!-- DOT GRID visible -->
-    <div
-      aria-hidden="true"
-      class="pointer-events-none absolute inset-0 z-0 opacity-25
-			bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)]
-			bg-size-[18px_18px]"
-    >
-    </div>
-
-    <div
-      class="relative z-10 mx-auto max-w-6xl px-6 py-12 md:px-10 md:py-16"
-    >
-      <div class="grid items-center gap-12 md:grid-cols-12">
-        <!-- IZQUIERDA: FOTO -->
-        <div class="md:col-span-5">
-          <div class="flex items-center justify-center">
-            <div class="relative h-70 w-80 sm:h-75 sm:w-85 md:h-90 md:w-105">
-              <CircularText
-                client:only="react"
-                text="ALEJANDRO*SOPEÑA*GÓMEZ*"
-                onHover="slowDown"
-                spinDuration={20}
-                className="circularText"
-              />
-
+      <div
+        class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 py-12 md:px-10 md:py-16"
+      >
+        <div class="grid items-center gap-10 md:gap-12 md:grid-cols-12">
+          <!-- FOTO -->
+          <div class="md:col-span-5">
+            <div class="flex items-center justify-center">
               <div
-                class="pointer-events-none absolute inset-0 grid place-items-center"
-                aria-hidden="true"
+                class="relative h-[280px] w-[280px] xs:h-[320px] xs:w-[320px] sm:h-[360px] sm:w-[360px] md:h-[420px] md:w-[420px]"
               >
-                <div class="relative pointer-events-auto">
-                  <div
-                    class="absolute inset-0 rounded-full border border-white/15 bg-white/10 backdrop-blur-md shadow-xl shadow-black/25"
-                  >
-                  </div>
+                <CircularText
+                  client:only="react"
+                  text="ALEJANDRO*SOPEÑA*GÓMEZ*"
+                  onHover="slowDown"
+                  spinDuration={20}
+                  className="circularText"
+                />
 
-                  <img
-                    src="/img/alejandro.jpg"
-                    alt="Foto de Alejandro"
-                    class="relative h-44 w-44 sm:h-52 sm:w-52 md:h-60 md:w-60 rounded-full border border-white/20 object-cover shadow-2xl shadow-black/35 transition hover:scale-105"
-                    loading="lazy"
-                  />
+                <div
+                  class="pointer-events-none absolute inset-0 grid place-items-center"
+                  aria-hidden="true"
+                >
+                  <div class="relative pointer-events-auto">
+                    <div
+                      class="absolute inset-0 rounded-full border border-white/15 bg-white/10 backdrop-blur-md shadow-xl shadow-black/25"
+                    >
+                    </div>
+
+                    <img
+                      src="/cv.png"
+                      alt="Foto de Alejandro"
+                      class="relative h-40 w-40 xs:h-44 xs:w-44 sm:h-52 sm:w-52 md:h-60 md:w-60 rounded-full border border-white/20 object-cover shadow-2xl shadow-black/35 transition hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- TEXTO -->
+          <div class="md:col-span-7 text-white text-center md:text-left">
+            <h2
+              class="mt-3 text-3xl xs:text-4xl md:text-5xl font-extrabold leading-tight"
+            >
+              Sobre mí
+            </h2>
+
+            <div
+              class="mt-5 sm:mt-6 space-y-4 text-white/85 text-base md:text-lg leading-relaxed"
+            >
+              <p>
+                Me considero una persona creativa, curiosa y comprometida con el
+                aprendizaje continuo. Disfruto resolviendo problemas y
+                colaborando en equipo para lograr resultados de calidad.
+              </p>
+              <p>
+                Además de la programación, me interesan el diseño, la música y
+                la tecnología. Siempre busco nuevos retos para mejorar mis
+                habilidades.
+              </p>
+            </div>
+
+            <div
+              class="mt-7 sm:mt-8 flex flex-wrap gap-2 justify-center md:justify-start"
+            >
+              {
+                tagsSobre.map((t) => (
+                  <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm text-white/85 backdrop-blur transition hover:bg-white/15">
+                    {t}
+                  </span>
+                ))
+              }
+            </div>
+
+            <div
+              class="mt-8 sm:mt-10 flex flex-wrap gap-3 justify-center md:justify-start"
+            >
+              <a
+                href="#experiencia"
+                class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              >
+                Ver experiencia <span aria-hidden="true" class="opacity-70"
+                  >→</span
+                >
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- DERECHA: TEXTO -->
-        <div class="md:col-span-7 text-white">
+    <!-- EXPERIENCIA -->
+    <section id="experiencia" class="relative min-h-[100svh] overflow-hidden">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 z-0 opacity-20
+               bg-[radial-gradient(rgba(255,255,255,0.65)_1px,transparent_1px)]
+               bg-size-[18px_18px]"
+      >
+      </div>
 
+      <div
+        class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-14 sm:py-16 md:py-24"
+      >
+        <header class="mx-auto max-w-3xl text-center text-white">
+          <p
+            class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70"
+          >
+            <span class="h-px w-8 sm:w-10 bg-white/30"></span>
+            Experiencia
+            <span class="h-px w-8 sm:w-10 bg-white/30"></span>
+          </p>
 
-          <h2 class="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">
-            Sobre mí
+          <h2
+            class="text-2xl xs:text-3xl font-extrabold leading-tight md:text-4xl"
+          >
+            Trabajo + proyectos reales
           </h2>
 
-          <div
-            class="mt-6 space-y-4 text-white/85 text-base md:text-lg leading-relaxed"
+          <p class="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
+            Experiencia en desarrollo web (prácticas + proyectos propios).
+          </p>
+        </header>
+
+        <div class="mt-10 sm:mt-12 mx-auto max-w-4xl space-y-6">
+          <article
+            class="rounded-3xl border border-white/12 bg-white/10 p-5 sm:p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7
+                   transition hover:bg-white/12 hover:border-white/18"
           >
-            <p>
-              Me considero una persona creativa, curiosa y comprometida con el
-              aprendizaje continuo. Disfruto resolviendo problemas y colaborando
-              en equipo para lograr resultados de calidad.
-            </p>
-            <p>
-              Además de la programación, me interesan el diseño, la música y la
-              tecnología. Siempre busco nuevos retos para mejorar mis
-              habilidades.
-            </p>
-          </div>
-
-          <div class="mt-8 flex flex-wrap gap-2">
-            {
-              tagsSobre.map((t) => (
-                <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm text-white/85 backdrop-blur transition hover:bg-white/15">
-                  {t}
-                </span>
-              ))
-            }
-          </div>
-
-          <div class="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#experiencia"
-              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            <div
+              class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
             >
-              Ver experiencia <span aria-hidden="true" class="opacity-70"
-                >→</span
+              <div class="min-w-0">
+                <p class="text-lg font-extrabold tracking-tight text-white">
+                  Inetum
+                </p>
+                <p class="mt-1 text-sm text-white/70">
+                  <span class="font-semibold text-white/85"
+                    >Prácticas — Desarrollo Web</span
+                  >
+                </p>
+              </div>
+
+              <span
+                class="w-fit rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80"
               >
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experiencia" class="relative min-h-screen overflow-hidden">
-    {/* patrón de puntos */}
-<div
-  aria-hidden="true"
-  class="pointer-events-none absolute inset-0 z-0 opacity-20
-         bg-[radial-gradient(rgba(255,255,255,0.65)_1px,transparent_1px)]
-         bg-size-[18px_18px]"
-></div>
-
-
-    <div class="relative z-10 mx-auto max-w-6xl px-6 md:px-10 py-16 md:py-24">
-      {/* HEADER */}
-      <header class="mx-auto max-w-3xl text-center text-white">
-        <p
-          class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70"
-        >
-          <span class="h-px w-10 bg-white/30"></span>
-          Experiencia
-          <span class="h-px w-10 bg-white/30"></span>
-        </p>
-
-        <h2 class="text-3xl font-extrabold leading-tight md:text-4xl">
-          Trabajo + proyectos reales
-        </h2>
-
-        <p class="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
-          Experiencia en desarrollo web (prácticas
-          + proyectos propios).
-        </p>
-
-      </header>
-
-      {/* CONTENIDO */}
-      <div class="mt-12 mx-auto max-w-4xl space-y-6">
-        {/* INETUM */}
-        <article
-          class="rounded-3xl border border-white/12 bg-white/10 p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7
-				transition hover:bg-white/12 hover:border-white/18"
-        >
-          <div
-            class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
-          >
-            <div class="min-w-0">
-              <p class="text-lg font-extrabold tracking-tight text-white">
-                Inetum
-              </p>
-              <p class="mt-1 text-sm text-white/70">
-                <span class="font-semibold text-white/85"
-                  >Prácticas — Desarrollo Web</span
-                >
-              </p>
+                Octubre 2025 — Actualidad
+              </span>
             </div>
 
-            <span
-              class="w-fit rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80"
+            <div aria-hidden="true" class="mt-5 h-px w-full bg-white/10"></div>
+
+            <ul class="mt-5 grid gap-3 text-white/75 md:grid-cols-2">
+              {
+                inetumBullets.map((item) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/60" />
+                    <span class="text-sm leading-relaxed">{item}</span>
+                  </li>
+                ))
+              }
+            </ul>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              {
+                ["Trabajo en equipo", "Full Stack"].map((t) => (
+                  <span class="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-white/75">
+                    {t}
+                  </span>
+                ))
+              }
+            </div>
+          </article>
+
+          <article
+            class="rounded-3xl border border-white/12 bg-white/10 p-5 sm:p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7"
+          >
+            <div class="flex items-end justify-between gap-3">
+              <div>
+                <p class="text-lg font-extrabold text-white">Proyectos</p>
+                <p class="mt-1 text-sm text-white/70">
+                  Selección de trabajos con enfoque en producto y UI.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="mt-6 mx-auto grid w-full max-w-5xl grid-cols-2 gap-3 sm:gap-4"
             >
-              Octubre 2025 — Actualidad
-            </span>
-          </div>
+              {
+                projects.map((p) => (
+                  <article
+                    class="group w-full overflow-hidden rounded-2xl border border-white/12 bg-white/10
+                           shadow-md shadow-black/20 transition
+                           hover:-translate-y-0.5 hover:bg-white/15 hover:border-white/20
+                           focus-within:ring-2 focus-within:ring-white/35"
+                  >
+                    <div class="relative h-32 sm:h-40 w-full bg-black/20">
+                      <img
+                        src={p.img}
+                        alt={p.title}
+                        loading="lazy"
+                        class="h-full w-full object-cover"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-black/10 to-transparent"
+                      />
+                    </div>
 
-          <div aria-hidden="true" class="mt-5 h-px w-full bg-white/10"></div>
+                    <div class="p-3 sm:p-5">
+                      <div class="flex items-start justify-between gap-3">
+                        <p class="text-sm sm:text-lg font-extrabold tracking-tight text-white">
+                          {p.title}
+                        </p>
+                      </div>
 
-          <ul class="mt-5 grid gap-3 text-white/75 md:grid-cols-2">
-            {
-              inetumBullets.map((item) => (
-                <li class="flex gap-3">
-                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/60" />
-                  <span class="text-sm leading-relaxed">{item}</span>
-                </li>
-              ))
-            }
-          </ul>
-
-          {/* Tags discretos (sin vacío) */}
-          <div class="mt-5 flex flex-wrap gap-2">
-            {
-              ["Trabajo en equipo", "Full Stack"].map((t) => (
-                <span class="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-white/75">
-                  {t}
-                </span>
-              ))
-            }
-          </div>
-        </article>
-
-        {/* PROYECTOS */}
-        <article
-          class="rounded-3xl border border-white/12 bg-white/10 p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7"
-        >
-          <div class="flex items-end justify-between gap-3">
-            <div>
-              <p class="text-lg font-extrabold text-white">Proyectos</p>
-              <p class="mt-1 text-sm text-white/70">
-                Selección de trabajos con enfoque en producto y UI.
-              </p>
-            </div>
-          </div>
-
-          {/* GRID */}
-          <div
-            class="mt-6 mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 justify-items-center"
-          >
-            {
-              projects.map((p) => (
-                <article
-                  class="group w-full max-w-130 overflow-hidden rounded-2xl border border-white/12 bg-white/10
-						shadow-md shadow-black/20 transition
-						hover:-translate-y-0.5 hover:bg-white/15 hover:border-white/20
-						focus-within:ring-2 focus-within:ring-white/35"
-                >
-                  {/* IMAGEN */}
-                  <div class="relative h-40 w-full bg-black/20">
-                    <img
-                      src={p.img}
-                      alt={p.title}
-                      loading="lazy"
-                      class="h-full w-full object-cover"
-                    />
-                    <div
-                      aria-hidden="true"
-                      class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-black/10 to-transparent"
-                    />
-                  </div>
-
-                  <div class="p-4 md:p-5">
-                    <div class="flex items-start justify-between gap-3">
-                      <p class="text-base md:text-lg font-extrabold tracking-tight text-white">
-                        {p.title}
+                      <p class="mt-2 text-sm leading-relaxed text-white/75">
+                        {p.desc}
                       </p>
+
+                      <div class="mt-3 flex flex-wrap gap-2">
+                        {p.tags.map((t) => (
+                          <span class="rounded-full border border-white/12 bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-white/80">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        {p.links.map((l) => (
+                          <a
+                            href={l.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-bold text-white/90
+                                   backdrop-blur-sm transition hover:bg-white/15
+                                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+                          >
+                            <span class="max-w-56 truncate">{l.label}</span>
+                          </a>
+                        ))}
+                      </div>
                     </div>
-
-                    <p class="mt-2 text-sm leading-relaxed text-white/75">
-                      {p.desc}
-                    </p>
-
-                    <div class="mt-3 flex flex-wrap gap-2">
-                      {p.tags.map((t) => (
-                        <span class="rounded-full border border-white/12 bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-white/80">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div class="mt-4 flex flex-wrap gap-2">
-                      {p.links.map((l) => (
-                        <a
-                          href={l.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-bold text-white/90
-								backdrop-blur-sm transition hover:bg-white/15
-								focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
-                        >
-                          <span class="max-w-56 truncate">{l.label}</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              ))
-            }
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="conocimientos" class="section relative overflow-hidden">
-    <div class="section-content">
-      <div class="section-inner relative">
-<div
-  aria-hidden="true"
-  class="pointer-events-none absolute inset-0 z-0 opacity-20
-         bg-[radial-gradient(rgba(255,255,255,0.65)_1px,transparent_1px)]
-         bg-size-[18px_18px]"
-></div>
-
-
-        <div
-          class="relative z-10 mx-auto w-screen max-w-none px-0 py-18 md:py-24"
-        >
-          <!-- Header -->
-          <div class="mx-auto max-w-3xl text-center text-white">
-            <p
-              class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70"
-            >
-              <span class="h-0.5 w-10 bg-white/30"></span>
-              Conocimientos
-              <span class="h-0.5 w-10 bg-white/30"></span>
-            </p>
-
-            <h2 class="text-3xl font-extrabold leading-tight md:text-4xl">
-              Stack y herramientas que uso
-            </h2>
-            <div class="h-10"></div>
-          </div>
-          <LogoLoop
-            client:only="react"
-            logos={imageLogos}
-            className="w-full"
-            width="100vw"
-            speed={100}
-            direction="left"
-            logoHeight={60}
-            gap={60}
-            hoverSpeed={0}
-            scaleOnHover
-            fadeOut
-            fadeOutColor="#"
-            ariaLabel="Technology partners"
-          />
-
-          <div class="h-10"></div>
-          <!-- Vertical loop with deceleration on hover -->
-          <LogoLoop
-            client:only="react"
-            logos={imageLogos}
-            className="mt-8 w-full"
-            width="100vw"
-            speed={100}
-            direction="right"
-            logoHeight={60}
-            gap={60}
-            hoverSpeed={0}
-            fadeOut
-            fadeOutColor="·"
-          />
+                  </article>
+                ))
+              }
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
-{/* ===================== CONTACTO ===================== */}
-<section
-  id="contacto"
-  class="relative min-h-screen overflow-hidden"
->
-  {/* DOT GRID */}
-  <div
-    aria-hidden="true"
-    class="pointer-events-none absolute inset-0 z-0 opacity-25
-           bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)]
-           [background-size:18px_18px]"
-  ></div>
+    </section>
 
-  {/* Overlay */}
-  <div
-    aria-hidden="true"
-    class="pointer-events-none absolute inset-0 z-0 bg-linear-to-b"
-  ></div>
-
-  <div class="relative z-10 mx-auto max-w-6xl px-6 md:px-10 py-16 md:py-24">
-    {/* Header */}
-    <div class="mx-auto max-w-3xl text-center text-white">
-      <p class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70">
-        <span class="h-px w-10 bg-white/30"></span>
-        Contacto
-        <span class="h-px w-10 bg-white/30"></span>
-      </p>
-
-      <h2 class="text-3xl font-extrabold leading-tight md:text-4xl">
-        Hablemos de tu idea
-      </h2>
-
-      <p class="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
-        Cuéntame qué necesitas
-      </p>
-    </div>
-
-  <div class="mt-12 grid gap-6 lg:grid-cols-12">
-
-
-      {/* Columna derecha: formulario */}
-      <div class="lg:col-span-12 flex justify-center">
-        <form
-          class="w-full max-w-2xl rounded-3xl border border-white/12 bg-white/10 p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7"
-          method="post"
-          action="#"
-        >
-          <div class="grid gap-4 md:grid-cols-2">
-            <div class="md:col-span-1">
-              <label for="name" class="text-xs font-semibold text-white/80">
-                Nombre
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Tu nombre"
-                class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45
-                       outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
-              />
-            </div>
-
-            <div class="md:col-span-1">
-              <label for="email" class="text-xs font-semibold text-white/80">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="tucorreo@ejemplo.com"
-                class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45
-                       outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
-              />
-            </div>
-
-            <div class="md:col-span-2">
-              <label for="subject" class="text-xs font-semibold text-white/80">
-                Asunto
-              </label>
-              <input
-                id="subject"
-                name="subject"
-                type="text"
-                placeholder="Ej: Web con panel + login"
-                class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45
-                       outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
-              />
-            </div>
-
-            <div class="md:col-span-2">
-              <label for="message" class="text-xs font-semibold text-white/80">
-                Mensaje
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="6"
-                placeholder="Cuéntame el objetivo, funcionalidades y plazo aproximado..."
-                class="mt-2 w-full resize-none rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45
-                       outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
-              ></textarea>
-            </div>
+    <!-- CONOCIMIENTOS -->
+    <section id="conocimientos" class="section relative overflow-hidden">
+      <div class="section-content">
+        <div class="section-inner relative">
+          <div
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-0 z-0 opacity-20
+                   bg-[radial-gradient(rgba(255,255,255,0.65)_1px,transparent_1px)]
+                   bg-size-[18px_18px]"
+          >
           </div>
 
-          <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div
+            class="relative z-10 mx-auto w-screen max-w-none px-0 py-14 sm:py-18 md:py-24"
+          >
+            <div class="mx-auto max-w-3xl text-center text-white px-4 sm:px-6">
+              <p
+                class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70"
+              >
+                <span class="h-0.5 w-8 sm:w-10 bg-white/30"></span>
+                Conocimientos
+                <span class="h-0.5 w-8 sm:w-10 bg-white/30"></span>
+              </p>
 
-            <button
-              type="submit"
-              class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/15 px-6 py-3 text-sm font-extrabold text-white
-                     backdrop-blur-sm shadow-lg shadow-black/20 transition
-                     hover:-translate-y-0.5 hover:bg-white/20
-                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
-            >
-              Enviar mensaje
-            </button>
+              <h2
+                class="text-2xl xs:text-3xl font-extrabold leading-tight md:text-4xl"
+              >
+                Stack y herramientas que uso
+              </h2>
+              <div class="h-8 sm:h-10 mt-10"></div>
+            </div>
+
+            <!-- Ajuste móvil: logos más pequeños y menos gap -->
+            <LogoLoop
+              client:only="react"
+              logos={imageLogos}
+              className="w-full [--logoloop-logoHeight:48px] md:[--logoloop-logoHeight:80px]"
+              width="100vw"
+              speed={40}
+              direction="left"
+              gap={36}
+              hoverSpeed={0}
+              scaleOnHover
+              fadeOut
+              fadeOutColor="#"
+              ariaLabel="Technology partners"
+            />
+
+            <div class="h-8 sm:h-10"></div>
+
+            <LogoLoop
+              client:only="react"
+              logos={imageLogos}
+              className="w-full [--logoloop-logoHeight:48px] md:[--logoloop-logoHeight:80px]"
+              width="100vw"
+              speed={40}
+              direction="right"
+              gap={36}
+              hoverSpeed={0}
+              scaleOnHover
+              fadeOut
+              fadeOutColor="#"
+              ariaLabel="Technology partners"
+            />
           </div>
-        </form>
-
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-<Footer/>
-  </div>
+    </section>
 
+    {/* ===================== CONTACTO ===================== */}
+    <section id="contacto" class="relative overflow-hidden">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 z-0 opacity-25
+               bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)]
+               [background-size:18px_18px]"
+      >
+      </div>
+
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 z-0 bg-linear-to-b"
+      >
+      </div>
+
+      <div
+        class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-14 sm:py-16 md:py-24"
+      >
+        <div class="mx-auto max-w-3xl text-center text-white">
+          <p
+            class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70"
+          >
+            <span class="h-px w-8 sm:w-10 bg-white/30"></span>
+            Contacto
+            <span class="h-px w-8 sm:w-10 bg-white/30"></span>
+          </p>
+
+          <h2
+            class="text-2xl xs:text-3xl font-extrabold leading-tight md:text-4xl"
+          >
+            Hablemos de tu idea
+          </h2>
+
+          <p class="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
+            Cuéntame qué necesitas
+          </p>
+        </div>
+
+        <div class="mt-10 sm:mt-12 grid gap-6 lg:grid-cols-12">
+          <div class="lg:col-span-12 flex justify-center">
+            <form
+              class="w-full max-w-2xl rounded-3xl border border-white/12 bg-white/10 p-5 sm:p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7"
+              method="post"
+              action="/send-mail.php"
+            >
+              <div class="grid gap-4 md:grid-cols-2">
+                <div class="md:col-span-1">
+                  <label for="name" class="text-xs font-semibold text-white/80">
+                    Nombre
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Tu nombre"
+                    class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base md:text-sm text-white placeholder:text-white/45
+                           outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
+                  />
+                </div>
+
+                <div class="md:col-span-1">
+                  <label
+                    for="email"
+                    class="text-xs font-semibold text-white/80"
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="tucorreo@ejemplo.com"
+                    class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base md:text-sm text-white placeholder:text-white/45
+                           outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
+                  />
+                </div>
+
+                <div class="md:col-span-2">
+                  <label
+                    for="subject"
+                    class="text-xs font-semibold text-white/80"
+                  >
+                    Asunto
+                  </label>
+                  <input
+                    id="subject"
+                    name="subject"
+                    type="text"
+                    placeholder="Ej: Web con panel + login"
+                    class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base md:text-sm text-white placeholder:text-white/45
+                           outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
+                  />
+                </div>
+
+                <div class="md:col-span-2">
+                  <label
+                    for="message"
+                    class="text-xs font-semibold text-white/80"
+                  >
+                    Mensaje
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    placeholder="Cuéntame el objetivo, funcionalidades y plazo aproximado..."
+                    class="mt-2 w-full resize-none rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base md:text-sm text-white placeholder:text-white/45
+                           outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div
+                class="mt-6 flex flex-wrap items-center justify-center gap-3"
+              >
+                <button
+                  id="submitButton"
+                  type="submit"
+                  class="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/20 bg-white/15 px-6 py-3 text-sm font-extrabold text-white
+                         backdrop-blur-sm shadow-lg shadow-black/20 transition
+                         hover:-translate-y-0.5 hover:bg-white/20
+                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+                >
+                  Enviar mensaje
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
 </main>
+
+<script>
+  // Simple check for URL params to show a message
+  if (typeof window !== "undefined") {
+    const urlParams = new URLSearchParams(window.location.search);
+    const status = urlParams.get("status");
+
+    if (status === "success") {
+      const btn = document.getElementById("submitButton");
+      if (btn) {
+        btn.innerText = "¡Mensaje enviado!";
+        btn.classList.remove(
+          "bg-white/15",
+          "border-white/20",
+          "hover:bg-white/20",
+          "text-white",
+        );
+        btn.classList.add(
+          "bg-emerald-500/20",
+          "border-emerald-500/30",
+          "text-emerald-100",
+          "hover:bg-emerald-500/30",
+        );
+      }
+    } else if (status === "error") {
+      alert(
+        "Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.",
+      );
+    }
+  }
+</script>
 
 <GradualBlur
   client:only="react"
