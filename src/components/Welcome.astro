@@ -192,13 +192,13 @@ const marqueeRepeats = 10;
     </div>
 
     <div class="relative z-10 mt-6 flex items-center justify-center px-4">
-      <a
-        href="/Alejandro Sopeña Gómez.pdf"
+      <button
+        type="button"
+        data-cv-download
         class="inline-flex items-center rounded-full text-white/85 bg-white/20 backdrop-blur-md px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-white/25 hover:text-white"
-        download
       >
         Descargar CV
-      </a>
+      </button>
     </div>
 
     <div
@@ -692,6 +692,21 @@ const marqueeRepeats = 10;
 <script>
   // Simple check for URL params to show a message
   if (typeof window !== "undefined") {
+    const cvButtons = document.querySelectorAll("[data-cv-download]");
+    const cvPath = "/Alejandro%20Sope%C3%B1a%20G%C3%B3mez.pdf";
+    const cvFileName = "Alejandro Sopeña Gómez.pdf";
+
+    cvButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const link = document.createElement("a");
+        link.href = cvPath;
+        link.download = cvFileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      });
+    });
+
     const urlParams = new URLSearchParams(window.location.search);
     const status = urlParams.get("status");
 
