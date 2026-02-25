@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="FinanceFlow">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f6b8a" />
+      <stop offset="55%" stop-color="#173f5f" />
+      <stop offset="100%" stop-color="#0b172a" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.2" cy="0.25" r="0.8">
+      <stop offset="0%" stop-color="#6dd3ff" stop-opacity="0.6" />
+      <stop offset="70%" stop-color="#0b172a" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)" />
+  <rect width="1200" height="800" fill="url(#glow)" />
+
+  <g stroke="#ffffff" stroke-opacity="0.12" stroke-width="2">
+    <path d="M120 120H1080" />
+    <path d="M120 260H1080" />
+    <path d="M120 400H1080" />
+    <path d="M120 540H1080" />
+    <path d="M120 680H1080" />
+    <path d="M120 120V680" />
+    <path d="M360 120V680" />
+    <path d="M600 120V680" />
+    <path d="M840 120V680" />
+    <path d="M1080 120V680" />
+  </g>
+
+  <g fill="#ffffff">
+    <text x="120" y="260" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700">
+      FinanceFlow
+    </text>
+    <text x="120" y="320" font-family="Arial, Helvetica, sans-serif" font-size="26" opacity="0.85">
+      SaaS para autonomos y pymes
+    </text>
+    <text x="120" y="470" font-family="Arial, Helvetica, sans-serif" font-size="20" opacity="0.75">
+      Facturacion, gastos, CRM, recursos humanos y control horario en un solo lugar
+    </text>
+  </g>
+</svg>
