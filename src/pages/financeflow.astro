@@ -1,494 +1,278 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const gallery = [
-  {
-    title: "Dashboard principal",
-    desc: "Resumen financiero y estado del negocio.",
-    image: "/financeflow.svg",
-    tag: "KPIs",
-  },
-  {
-    title: "Facturación",
-    desc: "Ciclo completo de presupuestos y facturas.",
-    image: "/financeflow.svg",
-    tag: "Ventas",
-  },
-  {
-    title: "Gastos e impuestos",
-    desc: "Control fiscal y previsiones.",
-    image: "/financeflow.svg",
-    tag: "Fiscal",
-  },
-  {
-    title: "Clientes y CRM",
-    desc: "Historial, deuda y comunicaciones.",
-    image: "/financeflow.svg",
-    tag: "CRM",
-  },
-];
-
 const modules = [
   {
-    title: "Dashboard",
-    desc: "Vista general con KPIs, alertas y accesos rápidos.",
+    title: "Facturación y Presupuestos",
     image: "/financeflow.svg",
-    badge: "Core",
+    desc: "Gestión completa del ciclo de ventas, desde presupuesto hasta cobro.",
+    points: [
+      "Facturas con estados (Borrador, Enviada, Pagada, Vencida)",
+      "Presupuestos y conversión a factura en 1 clic",
+      "PDF, envío por email y duplicado",
+      "Facturas recurrentes y vista pública segura",
+      "Pagos online con Stripe",
+    ],
   },
   {
-    title: "Facturación",
-    desc: "Emisión, envío y seguimiento de facturas.",
+    title: "Gestión Financiera",
     image: "/financeflow.svg",
-    badge: "Ventas",
+    desc: "Control de gastos, impuestos y previsiones fiscales en tiempo real.",
+    points: [
+      "Registro de gastos con categorías y adjuntos",
+      "Cálculo de IVA repercutido / soportado",
+      "Estimación de IRPF y resultado fiscal",
+      "Hucha fiscal para previsión trimestral",
+      "Exportación de reportes (Excel/CSV)",
+    ],
   },
   {
-    title: "Presupuestos",
-    desc: "Creación y conversión rápida a factura.",
+    title: "CRM y RRHH",
     image: "/financeflow.svg",
-    badge: "Ventas",
+    desc: "Clientes, empleados, roles y control horario desde una sola plataforma.",
+    points: [
+      "Fichas de cliente e historial de facturación / deuda",
+      "Gestión de empleados y roles",
+      "Control horario START/STOP",
+      "Geolocalización en fichajes (GPS)",
+      "Panel de fichajes del empleado",
+    ],
   },
   {
-    title: "Gastos",
-    desc: "Registro con categorías y adjuntos.",
+    title: "Herramientas y Utilidades",
     image: "/financeflow.svg",
-    badge: "Finanzas",
+    desc: "Funciones de apoyo para acelerar operaciones y mejorar el flujo diario.",
+    points: [
+      "Catálogo de productos y servicios",
+      "Buscador global en toda la app",
+      "Roles y permisos granulares",
+      "Notificaciones internas y recordatorios",
+    ],
   },
   {
-    title: "Impuestos",
-    desc: "IVA e IRPF en tiempo real.",
+    title: "Administración SaaS (God Mode)",
     image: "/financeflow.svg",
-    badge: "Fiscal",
+    desc: "Panel de super administrador para gestionar usuarios, suscripciones y soporte.",
+    points: [
+      "Dashboard global de métricas",
+      "Gestión de usuarios del SaaS",
+      "Impersonation para soporte",
+      "Control de suscripciones y cupones",
+      "Estados: Activo, Baneado, Demo",
+    ],
   },
   {
-    title: "Clientes",
-    desc: "Fichas completas e historial.",
+    title: "Arquitectura y Base Técnica",
     image: "/financeflow.svg",
-    badge: "CRM",
-  },
-  {
-    title: "Productos",
-    desc: "Catálogo listo para facturar.",
-    image: "/financeflow.svg",
-    badge: "Catálogo",
-  },
-  {
-    title: "Empleados",
-    desc: "Roles y permisos por usuario.",
-    image: "/financeflow.svg",
-    badge: "Equipo",
-  },
-  {
-    title: "Control horario",
-    desc: "Fichajes y ubicaciones.",
-    image: "/financeflow.svg",
-    badge: "RRHH",
-  },
-  {
-    title: "Reportes",
-    desc: "Exportaciones y resúmenes.",
-    image: "/financeflow.svg",
-    badge: "Analítica",
-  },
-  {
-    title: "Notificaciones",
-    desc: "Alertas internas y recordatorios.",
-    image: "/financeflow.svg",
-    badge: "Automatización",
-  },
-  {
-    title: "Administración SaaS",
-    desc: "Suscripciones, usuarios y soporte.",
-    image: "/financeflow.svg",
-    badge: "Backoffice",
+    desc: "Estructura pensada para crecer por módulos y mantener orden en backend y frontend.",
+    points: [
+      "Laravel 12 + PHP 8.2 + MySQL",
+      "Blade + TailwindCSS + Alpine.js",
+      "Eloquent models para dominio completo",
+      "Middleware de permisos y suscripción",
+      "PDF con dompdf + pagos con Stripe",
+    ],
   },
 ];
 
-const highlights = [
-  { label: "Estado", value: "En desarrollo" },
-  { label: "Tipo", value: "SaaS B2B" },
-  { label: "Target", value: "Autónomos y PYMES" },
-  { label: "Acceso", value: "Privado" },
-];
-
-const kpis = [
-  { value: "12+", label: "Módulos" },
-  { value: "1", label: "Panel unificado" },
-  { value: "24/7", label: "Visión del negocio" },
-  { value: "∞", label: "Escalable" },
+const views = [
+  "Dashboard principal (resumen financiero + hucha fiscal)",
+  "Facturas (listado, filtros, estados y acciones)",
+  "Crear/Editar factura (líneas dinámicas con Alpine.js)",
+  "Presupuestos y conversión a factura",
+  "Gastos + cuadro fiscal (IVA/IRPF)",
+  "Clientes, empleados, roles y permisos",
+  "Control horario con mapa y geolocalización",
+  "Panel de admin SaaS (God Mode)",
 ];
 ---
 
 <Layout>
-  <main id="top" class="min-h-screen bg-zinc-950 text-white selection:bg-cyan-300/30 selection:text-white">
-    <div class="relative isolate overflow-hidden">
-      <!-- Fondo premium -->
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_10%,rgba(34,211,238,0.24),transparent_40%),radial-gradient(circle_at_85%_15%,rgba(59,130,246,0.20),transparent_42%),radial-gradient(circle_at_50%_100%,rgba(168,85,247,0.14),transparent_45%)]"
-      ></div>
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-0 -z-10 opacity-20
-               bg-[radial-gradient(rgba(255,255,255,0.85)_0.8px,transparent_0.8px)]
-               bg-[size:18px_18px]"
-      ></div>
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 bg-linear-to-b from-cyan-500/10 to-transparent blur-2xl"
-      ></div>
+  <main class="min-h-screen bg-zinc-50 text-zinc-900">
+    <!-- Header -->
+    <section class="border-b border-zinc-200 bg-white">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-12 sm:py-14">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+          Proyecto · SaaS
+        </p>
 
-      <!-- HERO -->
-      <section class="relative">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 pt-14 sm:pt-18 md:pt-24 pb-12 sm:pb-16">
-          <div class="grid gap-10 xl:grid-cols-12 xl:items-center">
-            <!-- Texto -->
-            <div class="xl:col-span-5">
-              <div class="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
-                <span class="h-px w-7 bg-white/25"></span>
-                Proyecto destacado
-                <span class="h-px w-7 bg-white/25"></span>
-              </div>
+        <h1 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950">
+          FinanceFlow
+        </h1>
 
-              <div class="mt-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-white/5 px-3 py-1 text-xs text-cyan-100/90 backdrop-blur-md">
-                <span class="inline-block h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.85)]"></span>
-                Roadmap activo
-              </div>
+        <p class="mt-4 max-w-3xl text-sm sm:text-base leading-relaxed text-zinc-600">
+          SaaS para autónomos y PYMES que centraliza facturación, gastos, presupuestos,
+          clientes, empleados, control horario y administración del propio producto
+          desde una interfaz moderna y clara.
+        </p>
 
-              <h1 class="mt-5 text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black leading-[1.05] tracking-tight">
-                SaaS para gestión de negocio
-                <span class="block bg-linear-to-r from-cyan-200 via-sky-300 to-violet-300 bg-clip-text text-transparent">
-                  moderno, claro y escalable
-                </span>
-              </h1>
-
-              <p class="mt-5 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-white/78">
-                Plataforma para autónomos y PYMES que centraliza facturación, gastos, clientes,
-                equipo e impuestos en una interfaz visualmente limpia, rápida y pensada para el día
-                a día.
-              </p>
-
-              <div class="mt-6 flex flex-wrap gap-2">
-                {highlights.map((h) => (
-                  <div class="rounded-full border border-white/12 bg-white/5 px-3 py-1.5 text-xs backdrop-blur-sm">
-                    <span class="text-white/50">{h.label}:</span>
-                    <span class="ml-1 font-semibold text-white/90">{h.value}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div class="mt-7 flex flex-wrap gap-3">
-                <a
-                  href="/#proyectos"
-                  class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white/95 backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60"
-                >
-                  ← Volver a proyectos
-                </a>
-                <a
-                  href="/#contacto"
-                  class="inline-flex items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2.5 text-sm font-semibold text-cyan-100 transition hover:-translate-y-0.5 hover:bg-cyan-300/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60"
-                >
-                  Contactar
-                </a>
-              </div>
-
-              <!-- KPIs -->
-              <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {kpis.map((item) => (
-                  <div class="rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-md">
-                    <div class="text-lg sm:text-xl font-extrabold tracking-tight">{item.value}</div>
-                    <div class="mt-0.5 text-[11px] sm:text-xs uppercase tracking-wider text-white/55">
-                      {item.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div class="mt-6 rounded-2xl border border-amber-200/15 bg-amber-200/5 p-4 text-sm leading-relaxed text-white/75">
-                <span class="font-semibold text-white/90">Estado actual:</span> en desarrollo.
-                Repositorio privado y sin despliegue público por el momento.
-              </div>
-            </div>
-
-            <!-- Preview principal -->
-            <div class="xl:col-span-7">
-              <div class="relative">
-                <div
-                  aria-hidden="true"
-                  class="pointer-events-none absolute -inset-4 rounded-[2rem] bg-linear-to-r from-cyan-400/15 via-blue-400/10 to-violet-400/15 blur-2xl"
-                ></div>
-
-                <button
-                  type="button"
-                  data-lightbox
-                  class="group relative w-full overflow-hidden rounded-3xl border border-white/12 bg-white/7 shadow-[0_18px_60px_rgba(0,0,0,0.45)] transition duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60"
-                  aria-label="Expandir imagen principal"
-                >
-                  <div class="aspect-[16/9] w-full bg-white/5">
-                    <img
-                      src="/financeflow.svg"
-                      alt="Vista principal del SaaS"
-                      class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/55 via-black/10 to-transparent"></span>
-
-                  <div class="pointer-events-none absolute inset-x-0 bottom-0 p-4 sm:p-5">
-                    <div class="flex items-end justify-between gap-4">
-                      <div>
-                        <p class="text-xs uppercase tracking-[0.18em] text-white/70">
-                          Preview general
-                        </p>
-                        <p class="mt-1 text-sm sm:text-base font-semibold text-white">
-                          Vista principal del producto
-                        </p>
-                      </div>
-                      <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold text-white/85 backdrop-blur-sm">
-                        Click para ampliar
-                      </span>
-                    </div>
-                  </div>
-                </button>
-              </div>
-
-              <!-- Mini galería -->
-              <div class="mt-6 grid gap-4 sm:grid-cols-2">
-                {gallery.map((item) => (
-                  <figure class="group rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-md transition hover:border-white/20 hover:bg-white/8">
-                    <button
-                      type="button"
-                      data-lightbox
-                      class="relative w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 transition group-hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60"
-                      aria-label={`Expandir ${item.title}`}
-                    >
-                      <div class="aspect-[16/9] w-full">
-                        <img
-                          src={item.image}
-                          alt={`Vista ${item.title}`}
-                          class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                          loading="lazy"
-                        />
-                      </div>
-                      <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-transparent to-transparent"></span>
-                      <span class="pointer-events-none absolute top-2 left-2 rounded-full border border-white/15 bg-black/25 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/85 backdrop-blur-sm">
-                        {item.tag}
-                      </span>
-                    </button>
-
-                    <figcaption class="mt-3 flex items-start justify-between gap-2">
-                      <div>
-                        <p class="text-sm font-semibold text-white/90">{item.title}</p>
-                        <p class="mt-1 text-xs leading-relaxed text-white/60">{item.desc}</p>
-                      </div>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            </div>
-          </div>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
+            Laravel 12
+          </span>
+          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
+            Blade + TailwindCSS
+          </span>
+          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
+            Alpine.js
+          </span>
+          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
+            Stripe
+          </span>
+          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
+            dompdf
+          </span>
         </div>
-      </section>
 
-      <!-- Sección de valor -->
-      <section class="relative">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-4 sm:py-6">
-          <div class="grid gap-4 md:grid-cols-3">
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
-              <div class="text-xs uppercase tracking-wider text-cyan-200/80">Objetivo</div>
-              <p class="mt-2 text-sm leading-relaxed text-white/80">
-                Reducir el tiempo de gestión diaria con un flujo unificado para ventas, gastos y
-                control fiscal.
-              </p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
-              <div class="text-xs uppercase tracking-wider text-cyan-200/80">Enfoque UX</div>
-              <p class="mt-2 text-sm leading-relaxed text-white/80">
-                Interfaz clara, navegación por módulos y acciones rápidas para minimizar clics y
-                fricción.
-              </p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
-              <div class="text-xs uppercase tracking-wider text-cyan-200/80">Arquitectura</div>
-              <p class="mt-2 text-sm leading-relaxed text-white/80">
-                Base preparada para crecimiento: roles, permisos, administración SaaS y reporting.
-              </p>
-            </div>
-          </div>
+        <div class="mt-6 text-sm text-zinc-600">
+          <span class="font-medium text-zinc-800">Estado:</span> En desarrollo · Repositorio privado · Sin despliegue público
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Módulos -->
-      <section class="relative overflow-hidden">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-12 sm:py-16 md:py-20">
-          <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight">
-                Apartados del producto
-              </h2>
-              <p class="mt-3 max-w-3xl text-sm sm:text-base leading-relaxed text-white/70">
-                Cada módulo está pensado como una pantalla dedicada, con su propia captura y flujo
-                de trabajo. Diseño coherente, jerarquía visual clara y enfoque operativo.
-              </p>
-            </div>
+    <!-- Módulos -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-10 sm:py-12">
+      <div class="mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950">
+          Módulos principales
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-zinc-600">
+          Cada tarjeta muestra un módulo del producto con una captura y sus funcionalidades clave.
+        </p>
+      </div>
 
-            <a
-              href="#top"
-              class="inline-flex items-center rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-            >
-              Volver arriba ↑
-            </a>
-          </div>
-
-          <div class="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            {modules.map((item, index) => (
-              <article
-                class="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-5 shadow-[0_12px_40px_rgba(0,0,0,0.28)] backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/8"
-                style={`animation-delay:${index * 35}ms`}
-              >
-                <div
-                  aria-hidden="true"
-                  class="pointer-events-none absolute inset-x-0 top-0 h-20 bg-linear-to-b from-white/6 to-transparent opacity-70"
-                ></div>
-
-                <div class="flex items-center justify-between gap-2">
-                  <span class="rounded-full border border-cyan-200/15 bg-cyan-200/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-cyan-100/80">
-                    {item.badge}
-                  </span>
-                  <span class="text-xs text-white/40">#{String(index + 1).padStart(2, "0")}</span>
-                </div>
-
-                <button
-                  type="button"
-                  data-lightbox
-                  class="mt-3 relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition group-hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60"
-                  aria-label={`Expandir ${item.title}`}
-                >
-                  <div class="aspect-[16/9] w-full">
-                    <img
-                      src={item.image}
-                      alt={`Vista ${item.title}`}
-                      class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
-                  </div>
-                  <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-transparent to-transparent"></span>
-                </button>
-
-                <h3 class="mt-4 text-lg font-extrabold tracking-tight text-white">{item.title}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-white/68">{item.desc}</p>
-
-                <div class="mt-4 flex items-center justify-between">
-                  <button
-                    type="button"
-                    data-lightbox
-                    class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10"
-                    aria-label={`Ver captura ampliada de ${item.title}`}
-                  >
-                    Ver captura
-                    <span aria-hidden="true">↗</span>
-                  </button>
-
-                  <span class="text-[11px] uppercase tracking-wider text-white/40">
-                    Módulo
-                  </span>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA final -->
-      <section class="relative">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 pb-14 sm:pb-18 md:pb-24">
-          <div class="relative overflow-hidden rounded-3xl border border-white/12 bg-white/6 p-6 sm:p-8 md:p-10 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-            <div
-              aria-hidden="true"
-              class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(34,211,238,0.18),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(168,85,247,0.15),transparent_45%)]"
-            ></div>
-
-            <div class="relative z-10 grid gap-6 md:grid-cols-[1.2fr_auto] md:items-center">
-              <div>
-                <p class="text-xs uppercase tracking-[0.18em] text-cyan-100/75">
-                  Próximos pasos
-                </p>
-                <h3 class="mt-2 text-2xl sm:text-3xl font-black tracking-tight">
-                  ¿Quieres una demo visual o una versión adaptada a tu negocio?
-                </h3>
-                <p class="mt-3 max-w-3xl text-sm sm:text-base leading-relaxed text-white/72">
-                  Se puede personalizar por sector, flujo de trabajo y permisos de equipo. Ideal
-                  para evolución por módulos y despliegue progresivo.
-                </p>
-              </div>
-
-              <div class="flex flex-wrap gap-3">
-                <a
-                  href="/#contacto"
-                  class="inline-flex items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-300/12 px-5 py-3 text-sm font-semibold text-cyan-100 transition hover:-translate-y-0.5 hover:bg-cyan-300/18 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60"
-                >
-                  Solicitar contacto
-                </a>
-                <a
-                  href="/#proyectos"
-                  class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/7 px-5 py-3 text-sm font-semibold text-white/90 transition hover:-translate-y-0.5 hover:bg-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-                >
-                  Ver más proyectos
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Lightbox -->
-      <div
-        id="lightbox"
-        class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/85 p-4 sm:p-6 md:p-8"
-        aria-hidden="true"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Vista ampliada de imagen"
-      >
-        <div class="relative w-full max-w-6xl">
-          <div class="absolute -top-12 right-0 flex items-center gap-2">
+      <div class="grid gap-6 lg:grid-cols-2">
+        {modules.map((module) => (
+          <article class="overflow-hidden rounded-2xl border border-zinc-200 bg-white">
             <button
-              id="lightboxPrev"
               type="button"
-              class="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/85 backdrop-blur-sm transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
-              aria-label="Imagen anterior"
+              data-lightbox
+              class="block w-full border-b border-zinc-200 bg-zinc-100"
+              aria-label={`Ampliar imagen de ${module.title}`}
             >
-              ←
+              <div class="aspect-[16/9] w-full">
+                <img
+                  src={module.image}
+                  alt={`Captura del módulo ${module.title}`}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
             </button>
-            <button
-              id="lightboxNext"
-              type="button"
-              class="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/85 backdrop-blur-sm transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
-              aria-label="Imagen siguiente"
-            >
-              →
-            </button>
-            <button
-              id="lightboxClose"
-              type="button"
-              class="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/85 backdrop-blur-sm transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
-              aria-label="Cerrar"
-            >
-              Cerrar ✕
-            </button>
+
+            <div class="p-5 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-semibold text-zinc-900">
+                {module.title}
+              </h3>
+
+              <p class="mt-2 text-sm leading-relaxed text-zinc-600">
+                {module.desc}
+              </p>
+
+              <ul class="mt-4 space-y-2">
+                {module.points.map((point) => (
+                  <li class="flex items-start gap-2 text-sm text-zinc-700">
+                    <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-zinc-400 shrink-0"></span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Vistas incluidas -->
+    <section class="border-t border-zinc-200 bg-white">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-10 sm:py-12">
+        <div class="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950">
+              Vistas y estructura frontend
+            </h2>
+            <p class="mt-3 text-sm sm:text-base leading-relaxed text-zinc-600">
+              La interfaz está construida con Blade, TailwindCSS y Alpine.js, organizada por módulos
+              para facilitar mantenimiento y escalado del producto.
+            </p>
+
+            <div class="mt-5 rounded-xl border border-zinc-200 bg-zinc-50 p-4 sm:p-5">
+              <p class="text-sm font-medium text-zinc-800">Layouts principales</p>
+              <ul class="mt-3 space-y-2 text-sm text-zinc-700">
+                <li><span class="font-medium">app.blade.php</span> · Shell privada (sidebar + topbar)</li>
+                <li><span class="font-medium">guest.blade.php</span> · Shell pública / auth</li>
+                <li><span class="font-medium">navigation.blade.php</span> · Navegación responsive</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="overflow-hidden rounded-3xl border border-white/15 bg-black/40 shadow-2xl shadow-black/50">
-            <img
-              id="lightboxImage"
-              src=""
-              alt=""
-              class="max-h-[82vh] w-full object-contain bg-black/40"
-            />
+          <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-4 sm:p-5">
+            <p class="text-sm font-medium text-zinc-800">Ejemplos de vistas destacadas</p>
+            <ul class="mt-3 space-y-2">
+              {views.map((view) => (
+                <li class="flex items-start gap-2 text-sm text-zinc-700">
+                  <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-zinc-400 shrink-0"></span>
+                  <span>{view}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <p id="lightboxCaption" class="mt-3 text-center text-sm text-white/75"></p>
         </div>
+      </div>
+    </section>
+
+    <!-- Stack técnico -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-10 sm:py-12">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950">
+        Stack técnico
+      </h2>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <div class="rounded-xl border border-zinc-200 bg-white p-5">
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-500">Backend</h3>
+          <ul class="mt-3 space-y-2 text-sm text-zinc-700">
+            <li>Laravel Framework 12.x</li>
+            <li>PHP 8.2+</li>
+            <li>MySQL 8.0+</li>
+            <li>laravel/breeze (auth)</li>
+            <li>barryvdh/laravel-dompdf (PDF)</li>
+            <li>stripe/stripe-php (pagos)</li>
+          </ul>
+        </div>
+
+        <div class="rounded-xl border border-zinc-200 bg-white p-5">
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-500">Frontend</h3>
+          <ul class="mt-3 space-y-2 text-sm text-zinc-700">
+            <li>Blade</li>
+            <li>TailwindCSS 3</li>
+            <li>Alpine.js 3</li>
+            <li>Vite</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox simple -->
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/80 px-4 py-8"
+      aria-hidden="true"
+    >
+      <div class="relative w-full max-w-5xl">
+        <button
+          id="lightboxClose"
+          type="button"
+          class="absolute -top-10 right-0 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/90 transition hover:bg-white/20"
+        >
+          Cerrar
+        </button>
+
+        <img
+          id="lightboxImage"
+          src=""
+          alt=""
+          class="w-full rounded-2xl border border-white/20 bg-black object-contain max-h-[85vh]"
+        />
       </div>
     </div>
   </main>
@@ -498,34 +282,11 @@ const kpis = [
   const lightbox = document.getElementById("lightbox");
   const lightboxImage = document.getElementById("lightboxImage");
   const lightboxClose = document.getElementById("lightboxClose");
-  const lightboxPrev = document.getElementById("lightboxPrev");
-  const lightboxNext = document.getElementById("lightboxNext");
-  const lightboxCaption = document.getElementById("lightboxCaption");
 
-  const triggers = Array.from(document.querySelectorAll("[data-lightbox]"));
-  let currentIndex = -1;
-
-  const getTriggerImageData = (trigger) => {
-    const img = trigger?.querySelector("img");
-    if (!img) return null;
-    return {
-      src: img.getAttribute("src") || "",
-      alt: img.getAttribute("alt") || "Vista ampliada",
-    };
-  };
-
-  const openLightboxByIndex = (index) => {
+  const openLightbox = (src, alt) => {
     if (!lightbox || !lightboxImage) return;
-    if (index < 0 || index >= triggers.length) return;
-
-    const data = getTriggerImageData(triggers[index]);
-    if (!data?.src) return;
-
-    currentIndex = index;
-    lightboxImage.src = data.src;
-    lightboxImage.alt = data.alt;
-    if (lightboxCaption) lightboxCaption.textContent = data.alt;
-
+    lightboxImage.src = src;
+    lightboxImage.alt = alt || "Vista ampliada";
     lightbox.classList.remove("hidden");
     lightbox.classList.add("flex");
     lightbox.setAttribute("aria-hidden", "false");
@@ -539,25 +300,16 @@ const kpis = [
     lightbox.setAttribute("aria-hidden", "true");
     lightboxImage.src = "";
     lightboxImage.alt = "";
-    if (lightboxCaption) lightboxCaption.textContent = "";
     document.body.style.overflow = "";
-    currentIndex = -1;
   };
 
-  const showPrev = () => {
-    if (!triggers.length) return;
-    const nextIndex = currentIndex <= 0 ? triggers.length - 1 : currentIndex - 1;
-    openLightboxByIndex(nextIndex);
-  };
-
-  const showNext = () => {
-    if (!triggers.length) return;
-    const nextIndex = currentIndex >= triggers.length - 1 ? 0 : currentIndex + 1;
-    openLightboxByIndex(nextIndex);
-  };
-
-  triggers.forEach((trigger, index) => {
-    trigger.addEventListener("click", () => openLightboxByIndex(index));
+  document.querySelectorAll("[data-lightbox]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const img = trigger.querySelector("img");
+      const src = img?.getAttribute("src");
+      const alt = img?.getAttribute("alt");
+      if (src) openLightbox(src, alt);
+    });
   });
 
   if (lightbox) {
@@ -566,15 +318,11 @@ const kpis = [
     });
   }
 
-  if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
-  if (lightboxPrev) lightboxPrev.addEventListener("click", showPrev);
-  if (lightboxNext) lightboxNext.addEventListener("click", showNext);
+  if (lightboxClose) {
+    lightboxClose.addEventListener("click", closeLightbox);
+  }
 
   window.addEventListener("keydown", (event) => {
-    if (!lightbox || lightbox.classList.contains("hidden")) return;
-
     if (event.key === "Escape") closeLightbox();
-    if (event.key === "ArrowLeft") showPrev();
-    if (event.key === "ArrowRight") showNext();
   });
 </script>
