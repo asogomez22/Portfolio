@@ -20,30 +20,54 @@ const gallery = [
   },
 ];
 
-const sections = [
+const modules = [
   {
-    title: "Panel principal",
-    desc: "Vista general con KPIs, alertas y accesos rapidos a lo esencial.",
+    title: "Dashboard",
+    desc: "Vista general con KPIs, alertas y accesos rapidos.",
   },
   {
-    title: "Facturacion y presupuestos",
-    desc: "Flujo agil para crear, enviar y convertir presupuestos en facturas.",
+    title: "Facturacion",
+    desc: "Emision, envio y seguimiento de facturas.",
   },
   {
-    title: "Gastos e impuestos",
-    desc: "Registro de gastos, categorias y calculos fiscales en tiempo real.",
+    title: "Presupuestos",
+    desc: "Creacion y conversion rapida a factura.",
   },
   {
-    title: "Clientes y productos",
-    desc: "Fichas completas, historiales y catalogo listo para facturar.",
+    title: "Gastos",
+    desc: "Registro con categorias y adjuntos.",
   },
   {
-    title: "Equipo y control horario",
-    desc: "Gestion de empleados, roles y fichajes con ubicacion.",
+    title: "Impuestos",
+    desc: "IVA e IRPF en tiempo real.",
+  },
+  {
+    title: "Clientes",
+    desc: "Fichas completas e historial.",
+  },
+  {
+    title: "Productos",
+    desc: "Catalogo listo para facturar.",
+  },
+  {
+    title: "Empleados",
+    desc: "Roles y permisos por usuario.",
+  },
+  {
+    title: "Control horario",
+    desc: "Fichajes y ubicaciones.",
+  },
+  {
+    title: "Reportes",
+    desc: "Exportaciones y resumenes.",
+  },
+  {
+    title: "Notificaciones",
+    desc: "Alertas internas y recordatorios.",
   },
   {
     title: "Administracion SaaS",
-    desc: "Panel de control para suscripciones, usuarios y soporte.",
+    desc: "Suscripciones, usuarios y soporte.",
   },
 ];
 ---
@@ -124,43 +148,21 @@ const sections = [
             <div>
               <h2 class="text-2xl sm:text-3xl font-extrabold">Apartados del producto</h2>
               <p class="mt-3 text-sm sm:text-base text-white/75 max-w-3xl">
-                Cada modulo tiene su propia vista con foco en claridad y rapidez de uso.
+                Cada modulo tiene su propia vista con capturas dedicadas.
               </p>
             </div>
 
-            <div class="grid gap-8">
-              {sections.map((item, index) => (
-                <article class="rounded-3xl border border-white/12 bg-white/10 p-5 sm:p-6 shadow-lg shadow-black/25">
-                  <div class="grid gap-6 md:grid-cols-12 md:items-center">
-                    <div
-                      class={`md:col-span-7 ${
-                        index % 2 === 1 ? "md:order-2" : "md:order-1"
-                      }`}
-                    >
-                      <div
-                        class="flex items-center justify-center rounded-2xl border border-white/12 bg-white/5 text-white/60
-                               h-52 sm:h-64 md:h-72 text-sm"
-                      >
-                        Placeholder imagen
-                      </div>
-                    </div>
-
-                    <div
-                      class={`md:col-span-5 ${
-                        index % 2 === 1 ? "md:order-1" : "md:order-2"
-                      }`}
-                    >
-                      <p class="text-xs font-semibold uppercase tracking-wider text-white/60">
-                        Apartado
-                      </p>
-                      <h3 class="mt-2 text-xl sm:text-2xl font-extrabold">
-                        {item.title}
-                      </h3>
-                      <p class="mt-3 text-sm sm:text-base text-white/75">
-                        {item.desc}
-                      </p>
-                    </div>
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {modules.map((item) => (
+                <article class="rounded-3xl border border-white/12 bg-white/10 p-4 sm:p-5 shadow-lg shadow-black/25">
+                  <div
+                    class="flex items-center justify-center rounded-2xl border border-white/12 bg-white/5 text-white/60
+                           h-40 sm:h-44 md:h-48 text-sm"
+                  >
+                    Placeholder imagen
                   </div>
+                  <h3 class="mt-4 text-lg font-extrabold">{item.title}</h3>
+                  <p class="mt-2 text-sm text-white/70">{item.desc}</p>
                 </article>
               ))}
             </div>
