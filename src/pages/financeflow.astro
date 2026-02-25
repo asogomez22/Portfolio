@@ -5,18 +5,22 @@ const gallery = [
   {
     title: "Dashboard principal",
     desc: "Resumen financiero y estado del negocio.",
+    image: "/financeflow.svg",
   },
   {
     title: "Facturacion",
     desc: "Ciclo completo de presupuestos y facturas.",
+    image: "/financeflow.svg",
   },
   {
     title: "Gastos e impuestos",
     desc: "Control fiscal y previsiones.",
+    image: "/financeflow.svg",
   },
   {
     title: "Clientes y CRM",
     desc: "Historial, deuda y comunicaciones.",
+    image: "/financeflow.svg",
   },
 ];
 
@@ -24,50 +28,62 @@ const modules = [
   {
     title: "Dashboard",
     desc: "Vista general con KPIs, alertas y accesos rapidos.",
+    image: "/financeflow.svg",
   },
   {
     title: "Facturacion",
     desc: "Emision, envio y seguimiento de facturas.",
+    image: "/financeflow.svg",
   },
   {
     title: "Presupuestos",
     desc: "Creacion y conversion rapida a factura.",
+    image: "/financeflow.svg",
   },
   {
     title: "Gastos",
     desc: "Registro con categorias y adjuntos.",
+    image: "/financeflow.svg",
   },
   {
     title: "Impuestos",
     desc: "IVA e IRPF en tiempo real.",
+    image: "/financeflow.svg",
   },
   {
     title: "Clientes",
     desc: "Fichas completas e historial.",
+    image: "/financeflow.svg",
   },
   {
     title: "Productos",
     desc: "Catalogo listo para facturar.",
+    image: "/financeflow.svg",
   },
   {
     title: "Empleados",
     desc: "Roles y permisos por usuario.",
+    image: "/financeflow.svg",
   },
   {
     title: "Control horario",
     desc: "Fichajes y ubicaciones.",
+    image: "/financeflow.svg",
   },
   {
     title: "Reportes",
     desc: "Exportaciones y resumenes.",
+    image: "/financeflow.svg",
   },
   {
     title: "Notificaciones",
     desc: "Alertas internas y recordatorios.",
+    image: "/financeflow.svg",
   },
   {
     title: "Administracion SaaS",
     desc: "Suscripciones, usuarios y soporte.",
+    image: "/financeflow.svg",
   },
 ];
 ---
@@ -85,58 +101,93 @@ const modules = [
         </div>
 
         <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-16 sm:py-20 md:py-24">
-          <div class="flex flex-col gap-6">
-            <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70">
-              <span class="h-px w-8 bg-white/30"></span>
-              Proyecto destacado
-              <span class="h-px w-8 bg-white/30"></span>
+          <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-5">
+              <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70">
+                <span class="h-px w-8 bg-white/30"></span>
+                Proyecto destacado
+                <span class="h-px w-8 bg-white/30"></span>
+              </div>
+
+              <h1 class="mt-4 text-3xl xs:text-4xl md:text-5xl font-extrabold leading-tight">
+                SaaS en desarrollo
+              </h1>
+
+              <p class="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
+                SaaS para autonomos y PYMES. Centraliza facturacion, gastos, clientes, equipo y
+                administracion desde una interfaz moderna y clara.
+              </p>
+
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="/#proyectos"
+                  class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90
+                         backdrop-blur-sm transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+                >
+                  Volver a proyectos
+                </a>
+                <a
+                  href="/#contacto"
+                  class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90
+                         backdrop-blur-sm transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+                >
+                  Contactar
+                </a>
+              </div>
+
+              <div class="mt-6 rounded-2xl border border-white/12 bg-white/10 p-4 text-sm text-white/70">
+                Estado del proyecto: en desarrollo. Repositorio privado y sin despliegue publico.
+              </div>
             </div>
 
-            <h1 class="text-3xl xs:text-4xl md:text-5xl font-extrabold leading-tight">
-              SaaS en desarrollo
-            </h1>
-
-            <p class="max-w-3xl text-base sm:text-lg text-white/80 leading-relaxed">
-              SaaS para autonomos y PYMES. Centraliza facturacion, gastos, clientes, equipo y
-              administracion desde una interfaz moderna y clara.
-            </p>
-
-            <div class="flex flex-wrap gap-3">
-              <a
-                href="/#proyectos"
-                class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90
-                       backdrop-blur-sm transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+            <div class="lg:col-span-7">
+              <button
+                type="button"
+                data-lightbox
+                class="group relative w-full overflow-hidden rounded-3xl border border-white/12 bg-white/10 shadow-xl shadow-black/30
+                       transition hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/15"
+                aria-label="Expandir imagen principal"
               >
-                Volver a proyectos
-              </a>
-              <a
-                href="/#contacto"
-                class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90
-                       backdrop-blur-sm transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
-              >
-                Contactar
-              </a>
-            </div>
+                <div class="aspect-[16/9] w-full">
+                  <img
+                    src="/financeflow.svg"
+                    alt="Vista principal del SaaS"
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent"></span>
+                <span class="pointer-events-none absolute bottom-4 left-4 text-xs font-semibold uppercase tracking-wider text-white/80">
+                  Click para ampliar
+                </span>
+              </button>
 
-            <div class="rounded-2xl border border-white/12 bg-white/10 p-4 text-sm text-white/70">
-              Estado del proyecto: en desarrollo. Repositorio privado y sin despliegue publico.
-            </div>
-
-            <div class="mt-2 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {gallery.map((item) => (
-                <figure class="rounded-2xl border border-white/12 bg-white/10 p-3 shadow-md shadow-black/20">
-                  <div
-                    class="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/60
-                           h-36 text-xs"
-                  >
-                    Placeholder imagen
-                  </div>
-                  <figcaption class="mt-3 text-sm font-semibold text-white/85">
-                    {item.title}
-                  </figcaption>
-                  <p class="mt-1 text-xs text-white/60">{item.desc}</p>
-                </figure>
-              ))}
+              <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                {gallery.map((item) => (
+                  <figure class="rounded-2xl border border-white/12 bg-white/10 p-3 shadow-md shadow-black/20">
+                    <button
+                      type="button"
+                      data-lightbox
+                      class="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-white/20"
+                      aria-label={`Expandir ${item.title}`}
+                    >
+                      <div class="aspect-[16/9] w-full">
+                        <img
+                          src={item.image}
+                          alt={`Vista ${item.title}`}
+                          class="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/30 via-black/0 to-transparent"></span>
+                    </button>
+                    <figcaption class="mt-3 text-sm font-semibold text-white/85">
+                      {item.title}
+                    </figcaption>
+                    <p class="mt-1 text-xs text-white/60">{item.desc}</p>
+                  </figure>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -154,13 +205,23 @@ const modules = [
 
             <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {modules.map((item) => (
-                <article class="rounded-3xl border border-white/12 bg-white/10 p-4 sm:p-5 shadow-lg shadow-black/25">
-                  <div
-                    class="flex items-center justify-center rounded-2xl border border-white/12 bg-white/5 text-white/60
-                           h-40 sm:h-44 md:h-48 text-sm"
+                <article class="group rounded-3xl border border-white/12 bg-white/10 p-4 sm:p-5 shadow-lg shadow-black/25 transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/15">
+                  <button
+                    type="button"
+                    data-lightbox
+                    class="relative w-full overflow-hidden rounded-2xl border border-white/12 bg-white/5 transition group-hover:border-white/20"
+                    aria-label={`Expandir ${item.title}`}
                   >
-                    Placeholder imagen
-                  </div>
+                    <div class="aspect-[16/9] w-full">
+                      <img
+                        src={item.image}
+                        alt={`Vista ${item.title}`}
+                        class="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/30 via-black/0 to-transparent"></span>
+                  </button>
                   <h3 class="mt-4 text-lg font-extrabold">{item.title}</h3>
                   <p class="mt-2 text-sm text-white/70">{item.desc}</p>
                 </article>
@@ -169,6 +230,77 @@ const modules = [
           </div>
         </div>
       </section>
+
+      <div
+        id="lightbox"
+        class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/80 px-4 py-8"
+        aria-hidden="true"
+      >
+        <div class="relative w-full max-w-5xl">
+          <button
+            id="lightboxClose"
+            type="button"
+            class="absolute -top-10 right-0 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/80
+                   transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+          >
+            Cerrar
+          </button>
+          <img
+            id="lightboxImage"
+            src=""
+            alt=""
+            class="w-full rounded-3xl border border-white/15 bg-black/40 shadow-2xl shadow-black/40"
+          />
+        </div>
+      </div>
     </div>
   </main>
 </Layout>
+
+<script is:inline>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  const openLightbox = (src, alt) => {
+    if (!lightbox || !lightboxImage) return;
+    lightboxImage.src = src;
+    lightboxImage.alt = alt || "Vista ampliada";
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox || !lightboxImage) return;
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll("[data-lightbox]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const img = trigger.querySelector("img");
+      const src = img?.getAttribute("src");
+      const alt = img?.getAttribute("alt");
+      if (src) openLightbox(src, alt);
+    });
+  });
+
+  if (lightbox) {
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+  }
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener("click", closeLightbox);
+  }
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeLightbox();
+  });
+</script>
