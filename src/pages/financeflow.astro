@@ -1,5 +1,51 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const gallery = [
+  {
+    title: "Dashboard principal",
+    desc: "Resumen financiero y estado del negocio.",
+  },
+  {
+    title: "Facturacion",
+    desc: "Ciclo completo de presupuestos y facturas.",
+  },
+  {
+    title: "Gastos e impuestos",
+    desc: "Control fiscal y previsiones.",
+  },
+  {
+    title: "Clientes y CRM",
+    desc: "Historial, deuda y comunicaciones.",
+  },
+];
+
+const sections = [
+  {
+    title: "Panel principal",
+    desc: "Vista general con KPIs, alertas y accesos rapidos a lo esencial.",
+  },
+  {
+    title: "Facturacion y presupuestos",
+    desc: "Flujo agil para crear, enviar y convertir presupuestos en facturas.",
+  },
+  {
+    title: "Gastos e impuestos",
+    desc: "Registro de gastos, categorias y calculos fiscales en tiempo real.",
+  },
+  {
+    title: "Clientes y productos",
+    desc: "Fichas completas, historiales y catalogo listo para facturar.",
+  },
+  {
+    title: "Equipo y control horario",
+    desc: "Gestion de empleados, roles y fichajes con ubicacion.",
+  },
+  {
+    title: "Administracion SaaS",
+    desc: "Panel de control para suscripciones, usuarios y soporte.",
+  },
+];
 ---
 
 <Layout>
@@ -27,18 +73,9 @@ import Layout from "../layouts/Layout.astro";
             </h1>
 
             <p class="max-w-3xl text-base sm:text-lg text-white/80 leading-relaxed">
-              SaaS completo para autónomos y pequeñas empresas. Centraliza facturación, gastos,
-              presupuestos, clientes, productos, empleados y control horario desde una interfaz
-              moderna y elegante, concebida como un sistema operativo para el negocio.
+              SaaS para autonomos y PYMES. Centraliza facturacion, gastos, clientes, equipo y
+              administracion desde una interfaz moderna y clara.
             </p>
-
-            <div class="flex flex-wrap gap-2">
-              {["SaaS", "Laravel", "Tailwind", "Stripe", "CRM", "Facturación"].map((t) => (
-                <span class="rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
-                  {t}
-                </span>
-              ))}
-            </div>
 
             <div class="flex flex-wrap gap-3">
               <a
@@ -57,15 +94,25 @@ import Layout from "../layouts/Layout.astro";
               </a>
             </div>
 
-            <p class="text-sm text-white/60">
-              Estado: en desarrollo. Repositorio privado y sin despliegue en producción.
-            </p>
+            <div class="rounded-2xl border border-white/12 bg-white/10 p-4 text-sm text-white/70">
+              Estado del proyecto: en desarrollo. Repositorio privado y sin despliegue publico.
+            </div>
 
-            <div
-              class="mt-6 flex items-center justify-center rounded-2xl border border-white/12 bg-white/10 text-white/60
-                     h-48 sm:h-56 md:h-64 text-sm"
-            >
-              Placeholder imagen
+            <div class="mt-2 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {gallery.map((item) => (
+                <figure class="rounded-2xl border border-white/12 bg-white/10 p-3 shadow-md shadow-black/20">
+                  <div
+                    class="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/60
+                           h-36 text-xs"
+                  >
+                    Placeholder imagen
+                  </div>
+                  <figcaption class="mt-3 text-sm font-semibold text-white/85">
+                    {item.title}
+                  </figcaption>
+                  <p class="mt-1 text-xs text-white/60">{item.desc}</p>
+                </figure>
+              ))}
             </div>
           </div>
         </div>
@@ -73,249 +120,49 @@ import Layout from "../layouts/Layout.astro";
 
       <section class="relative overflow-hidden">
         <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-12 sm:py-16">
-          <div class="grid gap-10 md:gap-12">
+          <div class="grid gap-8">
             <div>
-              <h2 class="text-2xl sm:text-3xl font-extrabold">Funcionalidades y módulos</h2>
+              <h2 class="text-2xl sm:text-3xl font-extrabold">Apartados del producto</h2>
               <p class="mt-3 text-sm sm:text-base text-white/75 max-w-3xl">
-                El producto cubre el ciclo completo de gestión diaria, desde la facturación hasta la administración del SaaS.
+                Cada modulo tiene su propia vista con foco en claridad y rapidez de uso.
               </p>
-              <div
-                class="mt-5 flex items-center justify-center rounded-2xl border border-white/12 bg-white/10 text-white/60
-                       h-44 sm:h-56 text-sm"
-              >
-                Placeholder imagen
-              </div>
             </div>
 
             <div class="grid gap-8">
-              <div>
-                <h3 class="text-lg font-bold">Facturación y presupuestos</h3>
-                <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                  <li>Facturas con ciclo de vida completo: borrador, enviada, pagada y vencida.</li>
-                  <li>Presupuestos con creación, envío y conversión a factura en un clic.</li>
-                  <li>Acciones rápidas: descarga PDF, envío por email y duplicado.</li>
-                  <li>Facturas recurrentes con automatización mensual o anual.</li>
-                  <li>Vista pública segura para clientes sin necesidad de login.</li>
-                  <li>Pagos online integrados con Stripe.</li>
-                </ul>
-              </div>
+              {sections.map((item, index) => (
+                <article class="rounded-3xl border border-white/12 bg-white/10 p-5 sm:p-6 shadow-lg shadow-black/25">
+                  <div class="grid gap-6 md:grid-cols-12 md:items-center">
+                    <div
+                      class={`md:col-span-7 ${
+                        index % 2 === 1 ? "md:order-2" : "md:order-1"
+                      }`}
+                    >
+                      <div
+                        class="flex items-center justify-center rounded-2xl border border-white/12 bg-white/5 text-white/60
+                               h-52 sm:h-64 md:h-72 text-sm"
+                      >
+                        Placeholder imagen
+                      </div>
+                    </div>
 
-              <div>
-                <h3 class="text-lg font-bold">Gestión financiera</h3>
-                <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                  <li>Registro de gastos con categorización fiscal y comprobantes.</li>
-                  <li>Cálculo en tiempo real de IVA repercutido, IVA soportado e IRPF.</li>
-                  <li>Widget de hucha fiscal para estimar ahorro trimestral.</li>
-                  <li>Reportes exportables de facturas y gastos en Excel o CSV.</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 class="text-lg font-bold">CRM y recursos humanos</h3>
-                <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                  <li>Clientes con ficha completa, historial de facturación y deuda.</li>
-                  <li>Empleados con perfiles y roles diferenciados.</li>
-                  <li>Control horario con fichaje de entrada y salida.</li>
-                  <li>Geolocalización y registro de coordenadas GPS.</li>
-                  <li>Historial de ubicaciones y panel de fichajes del empleado.</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 class="text-lg font-bold">Herramientas y utilidades</h3>
-                <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                  <li>Catálogo de productos y servicios para facturación rápida.</li>
-                  <li>Buscador global en clientes, facturas y productos.</li>
-                  <li>Roles y permisos granulares por perfil de usuario.</li>
-                  <li>Sistema interno de notificaciones.</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 class="text-lg font-bold">SaaS y administración</h3>
-                <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                  <li>Control de acceso por estado de suscripción.</li>
-                  <li>Panel de super admin con métricas globales.</li>
-                  <li>Gestión de usuarios del SaaS y acciones de soporte.</li>
-                  <li>Impersonation para soporte rápido.</li>
-                  <li>Gestión de cupones y renovaciones.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="relative overflow-hidden">
-        <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-12 sm:py-16">
-          <div class="grid gap-10">
-            <div>
-              <h2 class="text-2xl sm:text-3xl font-extrabold">Modelos de datos</h2>
-              <p class="mt-3 text-sm sm:text-base text-white/75 max-w-3xl">
-                Estructura basada en Eloquent con entidades claras para cada dominio de negocio.
-              </p>
-              <div
-                class="mt-5 flex items-center justify-center rounded-2xl border border-white/12 bg-white/10 text-white/60
-                       h-44 sm:h-56 text-sm"
-              >
-                Placeholder imagen
-              </div>
-              <ul class="mt-4 grid gap-2 text-sm text-white/80 md:grid-cols-2">
-                <li>User: usuario principal del sistema (dueño o empleado).</li>
-                <li>Client: clientes externos a los que se factura.</li>
-                <li>Employee: perfiles de trabajadores asociados a una cuenta.</li>
-                <li>Role: definición de roles y permisos.</li>
-                <li>Product: items del catálogo.</li>
-                <li>Invoice: cabecera de factura y estado.</li>
-                <li>InvoiceItem: líneas individuales de facturas.</li>
-                <li>Quote: cabecera de presupuesto.</li>
-                <li>QuoteItem: líneas de presupuestos.</li>
-                <li>RecurringInvoice: configuración de facturas periódicas.</li>
-                <li>Expense: registro de gastos deducibles.</li>
-                <li>TimeEntry: registro de jornada laboral.</li>
-                <li>LocationLog: historial de coordenadas GPS de fichajes.</li>
-                <li>TimeSetting: configuraciones de control horario por empresa.</li>
-                <li>PlatformPayment: pagos de suscripción del SaaS.</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 class="text-2xl sm:text-3xl font-extrabold">Vistas y estructura frontend</h2>
-              <p class="mt-3 text-sm sm:text-base text-white/75 max-w-3xl">
-                Interfaz construida con Blade, TailwindCSS y Alpine.js, organizada por módulos.
-              </p>
-              <div
-                class="mt-5 flex items-center justify-center rounded-2xl border border-white/12 bg-white/10 text-white/60
-                       h-44 sm:h-56 text-sm"
-              >
-                Placeholder imagen
-              </div>
-
-              <div class="mt-6 grid gap-6">
-                <div>
-                  <h3 class="text-lg font-bold">Públicas y layouts</h3>
-                  <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                    <li>Landing pública con hero, beneficios, capturas y footer.</li>
-                    <li>Página de planes con comparativa y preguntas frecuentes.</li>
-                    <li>Panel de control con KPIs, gráficas y accesos rápidos.</li>
-                    <li>Layouts para app protegida y vistas de invitado.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 class="text-lg font-bold">Autenticación</h3>
-                  <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                    <li>Login, registro, recuperación y reset de contraseña.</li>
-                    <li>Confirmación de password para acciones sensibles.</li>
-                    <li>Verificación de email tras el registro.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 class="text-lg font-bold">Facturación y presupuestos</h3>
-                  <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                    <li>Listado con buscadores y filtros por estado y cliente.</li>
-                    <li>Formularios de creación y edición con cálculos en tiempo real.</li>
-                    <li>Vista detalle con timeline y acciones de envío o duplicado.</li>
-                    <li>Vista pública segura para clientes y plantilla PDF.</li>
-                    <li>Conversión directa de presupuesto a factura.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 class="text-lg font-bold">Finanzas</h3>
-                  <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                    <li>Gastos con filtros por categoría y subida de archivos.</li>
-                    <li>Cuadro fiscal con IVA repercutido, IVA soportado y modelo 303.</li>
-                    <li>Hucha IRPF con estimación del 20% de beneficio.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 class="text-lg font-bold">CRM y equipo</h3>
-                  <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                    <li>Clientes con fichas completas y buscador rápido.</li>
-                    <li>Empleados con credenciales y asignación de roles.</li>
-                    <li>Matriz de permisos por rol.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 class="text-lg font-bold">Utilidades</h3>
-                  <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                    <li>Catálogo de productos y servicios.</li>
-                    <li>Panel de facturas recurrentes y próximas ejecuciones.</li>
-                    <li>Control horario con mapa interactivo y fichaje.</li>
-                    <li>Perfil de empresa, seguridad y estado de suscripción.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 class="text-lg font-bold">Administración</h3>
-                  <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                    <li>Dashboard global para super admin.</li>
-                    <li>Gestión de usuarios con acciones de ban y extensión.</li>
-                    <li>Impersonation para soporte y resolución rápida.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 class="text-lg font-bold">Otros</h3>
-                  <ul class="mt-3 grid gap-2 text-sm text-white/80">
-                    <li>Paywall de suscripción expirada.</li>
-                    <li>Plantilla de email para envío de facturas.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h2 class="text-2xl sm:text-3xl font-extrabold">Stack tecnológico</h2>
-              <div
-                class="mt-5 flex items-center justify-center rounded-2xl border border-white/12 bg-white/10 text-white/60
-                       h-44 sm:h-56 text-sm"
-              >
-                Placeholder imagen
-              </div>
-              <ul class="mt-4 grid gap-2 text-sm text-white/80 md:grid-cols-2">
-                <li>Backend: Laravel 12.x, PHP 8.2, MySQL 8.0.</li>
-                <li>PDF: barryvdh/laravel-dompdf.</li>
-                <li>Pagos: stripe/stripe-php.</li>
-                <li>Notificaciones SMS: laravel-notification-channels/twilio.</li>
-                <li>Autenticación: laravel/breeze.</li>
-                <li>Frontend: Blade, TailwindCSS 3, Alpine.js 3, Vite.</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 class="text-2xl sm:text-3xl font-extrabold">Instalación local</h2>
-              <p class="mt-3 text-sm sm:text-base text-white/75 max-w-3xl">
-                Repositorio privado. La instalación se gestiona bajo solicitud.
-              </p>
-              <div
-                class="mt-5 flex items-center justify-center rounded-2xl border border-white/12 bg-white/10 text-white/60
-                       h-44 sm:h-56 text-sm"
-              >
-                Placeholder imagen
-              </div>
-            </div>
-
-            <div>
-              <h2 class="text-2xl sm:text-3xl font-extrabold">Seguridad</h2>
-              <div
-                class="mt-5 flex items-center justify-center rounded-2xl border border-white/12 bg-white/10 text-white/60
-                       h-44 sm:h-56 text-sm"
-              >
-                Placeholder imagen
-              </div>
-              <ul class="mt-4 grid gap-2 text-sm text-white/80 md:grid-cols-2">
-                <li>Auth basada en sesiones con Laravel Breeze.</li>
-                <li>Roles con middleware personalizado para permisos.</li>
-                <li>Validaciones estrictas con Form Requests.</li>
-                <li>Protecciones nativas XSS y CSRF.</li>
-                <li>Bloqueo por suscripción caducada.</li>
-                <li>Forzado de cambio de contraseña en primer login.</li>
-              </ul>
+                    <div
+                      class={`md:col-span-5 ${
+                        index % 2 === 1 ? "md:order-1" : "md:order-2"
+                      }`}
+                    >
+                      <p class="text-xs font-semibold uppercase tracking-wider text-white/60">
+                        Apartado
+                      </p>
+                      <h3 class="mt-2 text-xl sm:text-2xl font-extrabold">
+                        {item.title}
+                      </h3>
+                      <p class="mt-3 text-sm sm:text-base text-white/75">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </div>
