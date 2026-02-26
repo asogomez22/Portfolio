@@ -1,328 +1,289 @@
+
 ---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
 
-const modules = [
-  {
-    title: "Facturación y Presupuestos",
-    image: "/financeflow.svg",
-    desc: "Gestión completa del ciclo de ventas, desde presupuesto hasta cobro.",
-    points: [
-      "Facturas con estados (Borrador, Enviada, Pagada, Vencida)",
-      "Presupuestos y conversión a factura en 1 clic",
-      "PDF, envío por email y duplicado",
-      "Facturas recurrentes y vista pública segura",
-      "Pagos online con Stripe",
-    ],
-  },
-  {
-    title: "Gestión Financiera",
-    image: "/financeflow.svg",
-    desc: "Control de gastos, impuestos y previsiones fiscales en tiempo real.",
-    points: [
-      "Registro de gastos con categorías y adjuntos",
-      "Cálculo de IVA repercutido / soportado",
-      "Estimación de IRPF y resultado fiscal",
-      "Hucha fiscal para previsión trimestral",
-      "Exportación de reportes (Excel/CSV)",
-    ],
-  },
-  {
-    title: "CRM y RRHH",
-    image: "/financeflow.svg",
-    desc: "Clientes, empleados, roles y control horario desde una sola plataforma.",
-    points: [
-      "Fichas de cliente e historial de facturación / deuda",
-      "Gestión de empleados y roles",
-      "Control horario START/STOP",
-      "Geolocalización en fichajes (GPS)",
-      "Panel de fichajes del empleado",
-    ],
-  },
-  {
-    title: "Herramientas y Utilidades",
-    image: "/financeflow.svg",
-    desc: "Funciones de apoyo para acelerar operaciones y mejorar el flujo diario.",
-    points: [
-      "Catálogo de productos y servicios",
-      "Buscador global en toda la app",
-      "Roles y permisos granulares",
-      "Notificaciones internas y recordatorios",
-    ],
-  },
-  {
-    title: "Administración SaaS (God Mode)",
-    image: "/financeflow.svg",
-    desc: "Panel de super administrador para gestionar usuarios, suscripciones y soporte.",
-    points: [
-      "Dashboard global de métricas",
-      "Gestión de usuarios del SaaS",
-      "Impersonation para soporte",
-      "Control de suscripciones y cupones",
-      "Estados: Activo, Baneado, Demo",
-    ],
-  },
-  {
-    title: "Arquitectura y Base Técnica",
-    image: "/financeflow.svg",
-    desc: "Estructura pensada para crecer por módulos y mantener orden en backend y frontend.",
-    points: [
-      "Laravel 12 + PHP 8.2 + MySQL",
-      "Blade + TailwindCSS + Alpine.js",
-      "Eloquent models para dominio completo",
-      "Middleware de permisos y suscripción",
-      "PDF con dompdf + pagos con Stripe",
-    ],
-  },
+
+// --- DATOS DEL PROYECTO ---
+const techStack = [
+  { name: "Laravel 12", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M22.016 8.575a2.536 2.536 0 00-1.116-2.029L13.116.745a2.668 2.668 0 00-2.618 0L2.715 6.546A2.536 2.536 0 001.6 8.575v9.529a2.52 2.52 0 001.115 2.028l7.783 5.801a2.668 2.668 0 002.618 0l7.783-5.8a2.536 2.536 0 001.117-2.029V8.575zM12.215 22.84a.658.658 0 01-.645 0l-7.2-5.366a.541.541 0 01-.24-.452v-8.49a.534.534 0 01.24-.453l7.2-5.367a.662.662 0 01.645 0l7.2 5.367a.541.541 0 01.24.453v8.49a.541.541 0 01-.24.452l-7.2 5.366zM7.333 11.232v4.577h2.246v-3.08h1.666a1.956 1.956 0 000-3.912H8.815c-1.196 0-1.482.529-1.482 2.415zm2.246-1.12h1.666c.465 0 .546.168.546.467 0 .28-.08.465-.546.465H9.58v-.932z"/></svg>` },
+  { name: "PHP 8.2", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.8 13.93c-.47.38-1.12.57-1.95.57H6.91v3.2H4.8v-9.6h3.44c.83 0 1.48.19 1.95.57.47.38.7.92.7 1.62 0 .7-.23 1.25-.7 1.64zm4.84 3.77h-2.11V10.1h2.11v9.6zm6.16-5.41c-.47.38-1.12.57-1.95.57h-1.34v3.2h-2.11v-9.6h3.45c.83 0 1.48.19 1.95.57.47.38.7.92.7 1.62 0 .7-.23 1.25-.7 1.64zM6.91 12.06h1.34c.25 0 .43-.06.54-.18.11-.12.16-.28.16-.48 0-.2-.05-.36-.16-.48-.11-.12-.29-.18-.54-.18H6.91v1.32zm10.96 0h1.34c.25 0 .43-.06.54-.18.11-.12.16-.28.16-.48 0-.2-.05-.36-.16-.48-.11-.12-.29-.18-.54-.18h-1.34v1.32z"/></svg>` },
+  { name: "Tailwind CSS", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg>` },
+  { name: "Alpine.js", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M24 12l-5.72 5.746-5.724-5.742 5.724-5.746L24 12zM5.72 6.254L0 12l5.72 5.746 5.724-5.746L5.72 6.254zm11.44 11.492L11.436 23.5l-5.716-5.754 5.716-5.746 5.724 5.746z"/></svg>` },
+  { name: "MySQL", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M22 6c0-1.66-4.48-3-10-3S2 4.34 2 6c0 1.66 4.48 3 10 3s10-1.34 10-3zm-10 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3z"/></svg>` },
+  { name: "Stripe", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M11.988 22.502c-5.803 0-10.51-4.706-10.51-10.511 0-5.805 4.707-10.512 10.51-10.512 5.805 0 10.512 4.707 10.512 10.512 0 5.805-4.707 10.511-10.512 10.511zm4.564-15.006c-.84-.572-2.115-.918-3.67-.918-2.81 0-4.807 1.482-4.807 3.633 0 1.942 1.45 3.016 4.09 3.535 2.155.438 2.653.904 2.653 1.603 0 .888-.86 1.547-2.31 1.547-1.42 0-2.617-.42-3.52-1.002l-.66 2.053c.954.558 2.457.94 4.072.94 3.064 0 4.965-1.483 4.965-3.696 0-1.898-1.353-2.954-4.108-3.514-1.953-.404-2.522-.924-2.522-1.543 0-.756.76-1.452 2.148-1.452 1.155 0 2.13.332 2.875.786l.794-2.022z"/></svg>` },
 ];
 
-const views = [
-  "Dashboard principal (resumen financiero + hucha fiscal)",
-  "Facturas (listado, filtros, estados y acciones)",
-  "Crear/Editar factura (líneas dinámicas con Alpine.js)",
-  "Presupuestos y conversión a factura",
-  "Gastos + cuadro fiscal (IVA/IRPF)",
-  "Clientes, empleados, roles y permisos",
-  "Control horario con mapa y geolocalización",
-  "Panel de admin SaaS (God Mode)",
+const backendModels = [
+  { model: "User & Role", desc: "Gestión de dueños y empleados con roles granulares." },
+  { model: "Client", desc: "CRM integrado: ficha, historial y control de deuda." },
+  { model: "Invoice & Quote", desc: "Cabeceras de facturación con relación One-to-Many a Items." },
+  { model: "TimeEntry", desc: "Registro horario con coordenadas GPS (LocationLog)." },
+  { model: "Expense", desc: "Deducibles con categorización fiscal para el Modelo 303." },
+  { model: "RecurringInvoice", desc: "Motor CRON para automatizar suscripciones mensuales." },
+];
+
+const features = [
+  {
+    title: "Facturación Inteligente",
+    desc: "De presupuesto a factura en un clic. Cálculos de IVA y Retenciones en tiempo real con Alpine.js. Generación de PDFs al vuelo con DomPDF y motor de facturas recurrentes.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>`,
+    colSpan: "md:col-span-2",
+  },
+  {
+    title: "TimeClock & GPS",
+    desc: "Fichaje con geolocalización. El sistema registra las coordenadas exactas de entrada y salida, mostrándolas en un mapa interactivo.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>`,
+    colSpan: "md:col-span-1",
+  },
+  {
+    title: "Hucha Fiscal",
+    desc: "El Dashboard calcula automáticamente la diferencia entre IVA Soportado y Repercutido, indicando exactamente cuánto guardar para Hacienda.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" /></svg>`,
+    colSpan: "md:col-span-1",
+  },
+  {
+    title: "Arquitectura SaaS & God Mode",
+    desc: "Multi-tenant seguro con suscripciones bloqueables. Panel 'God Mode' para el administrador general que permite Impersonation (loguearse como otro usuario para soporte).",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" /></svg>`,
+    colSpan: "md:col-span-2",
+  },
 ];
 ---
 
+<style>
+  /* === ESTILOS NATIVOS AVANZADOS (SIN REACT) === */
+  
+  /* Gradiente animado para el texto principal */
+  .text-shine {
+    background: linear-gradient(
+      110deg,
+      #f0f7ff 30%,
+      #7dd3fc 50%,
+      #f0f7ff 70%
+    );
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shine 4s linear infinite;
+  }
+  @keyframes shine {
+    to { background-position: 200% center; }
+  }
+
+  /* Animación de marquesina infinita para stack tecnológico */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  /* Efecto flotante para SVGs decorativos */
+  .float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+  .float-delayed {
+    animation: float 8s ease-in-out 3s infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  /* Glow en hover para las tarjetas tipo Bento */
+  .glow-card {
+    position: relative;
+  }
+  .glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .glow-card:hover::before {
+    opacity: 1;
+  }
+</style>
+
 <Layout>
-  <main class="min-h-screen bg-zinc-50 text-zinc-900">
-    <!-- Header -->
-    <section class="border-b border-zinc-200 bg-white">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-12 sm:py-14">
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
-          Proyecto · SaaS
-        </p>
+<main class="overflow-x-hidden bg-sky-700 selection:bg-white/20 selection:text-white">
+  
+  <section class="relative min-h-[100svh] w-full flex flex-col items-center justify-center py-20 mb-20">
+    <Header />
 
-        <h1 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950">
-          FinanceFlow
-        </h1>
+    <div class="absolute inset-0 z-0 opacity-25 bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)] bg-[size:18px_18px] pointer-events-none"></div>
 
-        <p class="mt-4 max-w-3xl text-sm sm:text-base leading-relaxed text-zinc-600">
-          SaaS para autónomos y PYMES que centraliza facturación, gastos, presupuestos,
-          clientes, empleados, control horario y administración del propio producto
-          desde una interfaz moderna y clara.
-        </p>
+    <div class="absolute bottom-0 left-0 w-full h-[14vh] sm:h-[20vh] z-10 bg-linear-to-t from-cyan-700 to-transparent"></div>
 
-        <div class="mt-6 flex flex-wrap gap-2">
-          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
-            Laravel 12
-          </span>
-          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
-            Blade + TailwindCSS
-          </span>
-          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
-            Alpine.js
-          </span>
-          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
-            Stripe
-          </span>
-          <span class="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700">
-            dompdf
-          </span>
+    <div class="relative z-20 flex flex-col items-center max-w-5xl px-4 mt-16 text-center">
+      
+
+
+      <h1 class="text-6xl sm:text-7xl md:text-9xl font-extrabold leading-[1.08] tracking-tight text-shine pb-2 mt-10">
+        Veltra
+      </h1>
+
+      <p class="mt-4 text-2xl md:text-3xl font-bold text-white/80 tracking-wide">
+        Gestion total en tu negocio
+      </p>
+
+      <p class="mt-6 text-base md:text-lg text-white/70 leading-relaxed max-w-2xl font-light">
+        Una aplicación web integral diseñada para autónomos y PYMES. Centraliza toda la facturación, gastos, CRM y recursos humanos en una interfaz moderna y veloz.
+      </p>
+
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a href="#arquitectura" class="inline-flex items-center rounded-full text-sky-900 bg-white px-8 py-3.5 text-base sm:text-lg font-bold shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-white/50">
+          Ver Detalles Técnicos
+        </a>
+
+      </div>
+    </div>
+
+    <div class="absolute top-1/4 left-10 md:left-24 text-white/10 float-slow pointer-events-none hidden md:block">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-24 h-24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+    </div>
+    <div class="absolute bottom-1/3 right-10 md:right-24 text-white/10 float-delayed pointer-events-none hidden md:block">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-32 h-32"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
+    </div>
+  </section>
+
+  <div class="bg-linear-to-b from-cyan-700 via-cyan-950 to-zinc-950 relative">
+    
+    <section class="relative z-20 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 -mt-10 sm:-mt-20">
+      <div class="rounded-3xl border border-white/20 bg-white/10 p-2 sm:p-4 backdrop-blur-xl shadow-2xl shadow-black/50 transition duration-700 hover:-translate-y-2">
+        <div class="flex gap-2 mb-3 mt-1 ml-2">
+
         </div>
-
-        <div class="mt-6 text-sm text-zinc-600">
-          <span class="font-medium text-zinc-800">Estado:</span> En desarrollo · Repositorio privado · Sin despliegue público
+        <div class="relative overflow-hidden rounded-2xl bg-zinc-900 border border-white/10">
+          <img 
+            src="/1.png" 
+            alt="Dashboard FinanceFlow" 
+            class="w-full h-auto object-cover opacity-90 transition-transform duration-700 hover:scale-[1.01]"
+          />
         </div>
       </div>
     </section>
 
-    <!-- Módulos -->
-    <section class="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-10 sm:py-12">
-      <div class="mb-6">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950">
-          Módulos principales
-        </h2>
-        <p class="mt-2 text-sm sm:text-base text-zinc-600">
-          Cada tarjeta muestra un módulo del producto con una captura y sus funcionalidades clave.
+
+
+    <section id="funcionalidades" class="relative z-20 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-14 sm:py-20">
+      <header class="mx-auto max-w-3xl text-center text-white mb-14">
+        <p class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70">
+          <span class="h-px w-8 sm:w-10 bg-white/30"></span>
+          Soluciones Clave
+          <span class="h-px w-8 sm:w-10 bg-white/30"></span>
         </p>
-      </div>
+        <h2 class="text-3xl xs:text-4xl font-extrabold leading-tight md:text-5xl text-white">
+          Más que facturación. <br/> Un ecosistema.
+        </h2>
+      </header>
 
-      <div class="grid gap-6 lg:grid-cols-2">
-        {modules.map((module) => (
-          <article class="overflow-hidden rounded-2xl border border-zinc-200 bg-white">
-            <button
-              type="button"
-              data-lightbox
-              class="block w-full border-b border-zinc-200 bg-zinc-100"
-              aria-label={`Ampliar imagen de ${module.title}`}
-            >
-              <div class="aspect-[16/9] w-full">
-                <img
-                  src={module.image}
-                  alt={`Captura del módulo ${module.title}`}
-                  class="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </button>
-
-            <div class="p-5 sm:p-6">
-              <h3 class="text-lg sm:text-xl font-semibold text-zinc-900">
-                {module.title}
-              </h3>
-
-              <p class="mt-2 text-sm leading-relaxed text-zinc-600">
-                {module.desc}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {features.map((feature) => (
+          <article class={`glow-card flex flex-col justify-between rounded-3xl border border-white/12 bg-white/10 p-7 md:p-9 backdrop-blur-md shadow-lg shadow-black/25 transition-all duration-300 hover:border-white/25 hover:bg-white/15 hover:-translate-y-1 ${feature.colSpan}`}>
+            <div>
+              <div class="mb-5 inline-block text-cyan-300" set:html={feature.icon} />
+              <h3 class="text-2xl font-bold text-white tracking-tight mb-3">{feature.title}</h3>
+              <p class="text-white/75 text-base leading-relaxed">
+                {feature.desc}
               </p>
-
-              <ul class="mt-4 space-y-2">
-                {module.points.map((point) => (
-                  <li class="flex items-start gap-2 text-sm text-zinc-700">
-                    <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-zinc-400 shrink-0"></span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </article>
         ))}
       </div>
     </section>
 
-    <!-- Vistas incluidas -->
-    <section class="border-t border-zinc-200 bg-white">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-10 sm:py-12">
-        <div class="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
-          <div>
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950">
-              Vistas y estructura frontend
-            </h2>
-            <p class="mt-3 text-sm sm:text-base leading-relaxed text-zinc-600">
-              La interfaz está construida con Blade, TailwindCSS y Alpine.js, organizada por módulos
-              para facilitar mantenimiento y escalado del producto.
+    <section id="arquitectura" class="relative z-20 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-16">
+      <div class="rounded-3xl border border-white/12 bg-white/5 p-8 md:p-12 backdrop-blur-md shadow-2xl shadow-black/40">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 text-white">
+            <h2 class="text-3xl font-extrabold mb-4">Arquitectura de Datos <br/>& Eloquent ORM</h2>
+            <p class="text-white/75 leading-relaxed mb-8">
+              La solidez del SaaS reside en su modelo de base de datos relacional y su sistema de seguridad basado en roles (Breeze). Cada módulo está estrechamente acoplado para evitar inconsistencias financieras.
             </p>
-
-            <div class="mt-5 rounded-xl border border-zinc-200 bg-zinc-50 p-4 sm:p-5">
-              <p class="text-sm font-medium text-zinc-800">Layouts principales</p>
-              <ul class="mt-3 space-y-2 text-sm text-zinc-700">
-                <li><span class="font-medium">app.blade.php</span> · Shell privada (sidebar + topbar)</li>
-                <li><span class="font-medium">guest.blade.php</span> · Shell pública / auth</li>
-                <li><span class="font-medium">navigation.blade.php</span> · Navegación responsive</li>
-              </ul>
+            <div class="flex flex-wrap gap-2">
+              {["Multi-tenant aisaldo", "Impersonation", "Jobs / CRON", "MVC Pattern"].map(tag => (
+                <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm text-white/85">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
-          <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-4 sm:p-5">
-            <p class="text-sm font-medium text-zinc-800">Ejemplos de vistas destacadas</p>
-            <ul class="mt-3 space-y-2">
-              {views.map((view) => (
-                <li class="flex items-start gap-2 text-sm text-zinc-700">
-                  <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-zinc-400 shrink-0"></span>
-                  <span>{view}</span>
-                </li>
-              ))}
-            </ul>
+          <div class="lg:col-span-7">
+            <div class="rounded-2xl border border-white/15 bg-[#0d1117] shadow-xl overflow-hidden font-mono text-sm">
+              <div class="flex items-center px-4 py-3 border-b border-white/10 bg-white/5">
+                <span class="text-white/50 text-xs uppercase tracking-widest">app/Models/</span>
+              </div>
+              <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
+                {backendModels.map(model => (
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                      <span class="font-bold text-cyan-300">{model.model}.php</span>
+                    </div>
+                    <p class="text-white/50 pl-6 text-xs leading-relaxed">{model.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Stack técnico -->
-    <section class="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-10 sm:py-12">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950">
-        Stack técnico
-      </h2>
-
-      <div class="mt-6 grid gap-4 md:grid-cols-2">
-        <div class="rounded-xl border border-zinc-200 bg-white p-5">
-          <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-500">Backend</h3>
-          <ul class="mt-3 space-y-2 text-sm text-zinc-700">
-            <li>Laravel Framework 12.x</li>
-            <li>PHP 8.2+</li>
-            <li>MySQL 8.0+</li>
-            <li>laravel/breeze (auth)</li>
-            <li>barryvdh/laravel-dompdf (PDF)</li>
-            <li>stripe/stripe-php (pagos)</li>
-          </ul>
-        </div>
-
-        <div class="rounded-xl border border-zinc-200 bg-white p-5">
-          <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-500">Frontend</h3>
-          <ul class="mt-3 space-y-2 text-sm text-zinc-700">
-            <li>Blade</li>
-            <li>TailwindCSS 3</li>
-            <li>Alpine.js 3</li>
-            <li>Vite</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Lightbox simple -->
-    <div
-      id="lightbox"
-      class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/80 px-4 py-8"
-      aria-hidden="true"
-    >
-      <div class="relative w-full max-w-5xl">
-        <button
-          id="lightboxClose"
-          type="button"
-          class="absolute -top-10 right-0 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/90 transition hover:bg-white/20"
+    <section class="relative z-20 py-24 text-center">
+      <div class="mx-auto max-w-2xl px-4">
+        <h2 class="text-3xl font-bold text-white mb-8">Explora el resto del Portfolio</h2>
+        <a
+          href="/#proyectos"
+          class="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur-md shadow-lg shadow-black/25 transition hover:bg-white/20 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         >
-          Cerrar
-        </button>
-
-        <img
-          id="lightboxImage"
-          src=""
-          alt=""
-          class="w-full rounded-2xl border border-white/20 bg-black object-contain max-h-[85vh]"
-        />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+          Volver a Proyectos
+        </a>
       </div>
+    </section>
+
+    <div class="relative z-20 border-t border-white/10">
+      <Footer />
     </div>
-  </main>
-</Layout>
 
-<script is:inline>
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImage = document.getElementById("lightboxImage");
-  const lightboxClose = document.getElementById("lightboxClose");
+  </div> </main>
 
-  const openLightbox = (src, alt) => {
-    if (!lightbox || !lightboxImage) return;
-    lightboxImage.src = src;
-    lightboxImage.alt = alt || "Vista ampliada";
-    lightbox.classList.remove("hidden");
-    lightbox.classList.add("flex");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  };
+<script>
+  // Script nativo súper ligero para manejar el efecto "Glow" siguiendo el cursor 
+  // en las tarjetas de funcionalidades (Bento Grid) sin usar React.
+  if (typeof window !== "undefined") {
+    const handleOnMouseMove = (e) => {
+      const target = e.currentTarget;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      target.style.setProperty("--mouse-x", `${x}px`);
+      target.style.setProperty("--mouse-y", `${y}px`);
+    };
 
-  const closeLightbox = () => {
-    if (!lightbox || !lightboxImage) return;
-    lightbox.classList.add("hidden");
-    lightbox.classList.remove("flex");
-    lightbox.setAttribute("aria-hidden", "true");
-    lightboxImage.src = "";
-    lightboxImage.alt = "";
-    document.body.style.overflow = "";
-  };
-
-  document.querySelectorAll("[data-lightbox]").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const img = trigger.querySelector("img");
-      const src = img?.getAttribute("src");
-      const alt = img?.getAttribute("alt");
-      if (src) openLightbox(src, alt);
-    });
-  });
-
-  if (lightbox) {
-    lightbox.addEventListener("click", (event) => {
-      if (event.target === lightbox) closeLightbox();
+    document.querySelectorAll(".glow-card").forEach((card) => {
+      card.addEventListener("mousemove", handleOnMouseMove);
     });
   }
-
-  if (lightboxClose) {
-    lightboxClose.addEventListener("click", closeLightbox);
-  }
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeLightbox();
-  });
 </script>
+ </Layout>
