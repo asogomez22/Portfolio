@@ -153,12 +153,6 @@ const features = [
       </div>
     </div>
 
-    <div class="absolute top-1/4 left-10 md:left-24 text-white/10 float-slow pointer-events-none hidden md:block">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-24 h-24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
-    </div>
-    <div class="absolute bottom-1/3 right-10 md:right-24 text-white/10 float-delayed pointer-events-none hidden md:block">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-32 h-32"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
-    </div>
   </section>
 
   <div class="bg-linear-to-b from-cyan-700 via-cyan-950 to-zinc-950 relative">
@@ -179,74 +173,6 @@ const features = [
     </section>
 
 
-
-    <section id="funcionalidades" class="relative z-20 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-14 sm:py-20">
-      <header class="mx-auto max-w-3xl text-center text-white mb-14">
-        <p class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70">
-          <span class="h-px w-8 sm:w-10 bg-white/30"></span>
-          Soluciones Clave
-          <span class="h-px w-8 sm:w-10 bg-white/30"></span>
-        </p>
-        <h2 class="text-3xl xs:text-4xl font-extrabold leading-tight md:text-5xl text-white">
-          Más que facturación. <br/> Un ecosistema.
-        </h2>
-      </header>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {features.map((feature) => (
-          <article class={`glow-card flex flex-col justify-between rounded-3xl border border-white/12 bg-white/10 p-7 md:p-9 backdrop-blur-md shadow-lg shadow-black/25 transition-all duration-300 hover:border-white/25 hover:bg-white/15 hover:-translate-y-1 ${feature.colSpan}`}>
-            <div>
-              <div class="mb-5 inline-block text-cyan-300" set:html={feature.icon} />
-              <h3 class="text-2xl font-bold text-white tracking-tight mb-3">{feature.title}</h3>
-              <p class="text-white/75 text-base leading-relaxed">
-                {feature.desc}
-              </p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section id="arquitectura" class="relative z-20 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-16">
-      <div class="rounded-3xl border border-white/12 bg-white/5 p-8 md:p-12 backdrop-blur-md shadow-2xl shadow-black/40">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <div class="lg:col-span-5 text-white">
-            <h2 class="text-3xl font-extrabold mb-4">Arquitectura de Datos <br/>& Eloquent ORM</h2>
-            <p class="text-white/75 leading-relaxed mb-8">
-              La solidez del SaaS reside en su modelo de base de datos relacional y su sistema de seguridad basado en roles (Breeze). Cada módulo está estrechamente acoplado para evitar inconsistencias financieras.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              {["Multi-tenant aisaldo", "Impersonation", "Jobs / CRON", "MVC Pattern"].map(tag => (
-                <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm text-white/85">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div class="lg:col-span-7">
-            <div class="rounded-2xl border border-white/15 bg-[#0d1117] shadow-xl overflow-hidden font-mono text-sm">
-              <div class="flex items-center px-4 py-3 border-b border-white/10 bg-white/5">
-                <span class="text-white/50 text-xs uppercase tracking-widest">app/Models/</span>
-              </div>
-              <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
-                {backendModels.map(model => (
-                  <div>
-                    <div class="flex items-center gap-2 mb-1">
-                      <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                      <span class="font-bold text-cyan-300">{model.model}.php</span>
-                    </div>
-                    <p class="text-white/50 pl-6 text-xs leading-relaxed">{model.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
 
     <section class="relative z-20 py-24 text-center">
       <div class="mx-auto max-w-2xl px-4">
