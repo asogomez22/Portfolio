@@ -1,61 +1,69 @@
-
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
 
-
-// --- DATOS DEL PROYECTO ---
-const techStack = [
-  { name: "Laravel 12", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M22.016 8.575a2.536 2.536 0 00-1.116-2.029L13.116.745a2.668 2.668 0 00-2.618 0L2.715 6.546A2.536 2.536 0 001.6 8.575v9.529a2.52 2.52 0 001.115 2.028l7.783 5.801a2.668 2.668 0 002.618 0l7.783-5.8a2.536 2.536 0 001.117-2.029V8.575zM12.215 22.84a.658.658 0 01-.645 0l-7.2-5.366a.541.541 0 01-.24-.452v-8.49a.534.534 0 01.24-.453l7.2-5.367a.662.662 0 01.645 0l7.2 5.367a.541.541 0 01.24.453v8.49a.541.541 0 01-.24.452l-7.2 5.366zM7.333 11.232v4.577h2.246v-3.08h1.666a1.956 1.956 0 000-3.912H8.815c-1.196 0-1.482.529-1.482 2.415zm2.246-1.12h1.666c.465 0 .546.168.546.467 0 .28-.08.465-.546.465H9.58v-.932z"/></svg>` },
-  { name: "PHP 8.2", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.8 13.93c-.47.38-1.12.57-1.95.57H6.91v3.2H4.8v-9.6h3.44c.83 0 1.48.19 1.95.57.47.38.7.92.7 1.62 0 .7-.23 1.25-.7 1.64zm4.84 3.77h-2.11V10.1h2.11v9.6zm6.16-5.41c-.47.38-1.12.57-1.95.57h-1.34v3.2h-2.11v-9.6h3.45c.83 0 1.48.19 1.95.57.47.38.7.92.7 1.62 0 .7-.23 1.25-.7 1.64zM6.91 12.06h1.34c.25 0 .43-.06.54-.18.11-.12.16-.28.16-.48 0-.2-.05-.36-.16-.48-.11-.12-.29-.18-.54-.18H6.91v1.32zm10.96 0h1.34c.25 0 .43-.06.54-.18.11-.12.16-.28.16-.48 0-.2-.05-.36-.16-.48-.11-.12-.29-.18-.54-.18h-1.34v1.32z"/></svg>` },
-  { name: "Tailwind CSS", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg>` },
-  { name: "Alpine.js", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M24 12l-5.72 5.746-5.724-5.742 5.724-5.746L24 12zM5.72 6.254L0 12l5.72 5.746 5.724-5.746L5.72 6.254zm11.44 11.492L11.436 23.5l-5.716-5.754 5.716-5.746 5.724 5.746z"/></svg>` },
-  { name: "MySQL", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M22 6c0-1.66-4.48-3-10-3S2 4.34 2 6c0 1.66 4.48 3 10 3s10-1.34 10-3zm-10 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3zm0 5c-5.52 0-10-1.34-10-3v3c0 1.66 4.48 3 10 3s10-1.34 10-3v-3c0 1.66-4.48 3-10 3z"/></svg>` },
-  { name: "Stripe", svg: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M11.988 22.502c-5.803 0-10.51-4.706-10.51-10.511 0-5.805 4.707-10.512 10.51-10.512 5.805 0 10.512 4.707 10.512 10.512 0 5.805-4.707 10.511-10.512 10.511zm4.564-15.006c-.84-.572-2.115-.918-3.67-.918-2.81 0-4.807 1.482-4.807 3.633 0 1.942 1.45 3.016 4.09 3.535 2.155.438 2.653.904 2.653 1.603 0 .888-.86 1.547-2.31 1.547-1.42 0-2.617-.42-3.52-1.002l-.66 2.053c.954.558 2.457.94 4.072.94 3.064 0 4.965-1.483 4.965-3.696 0-1.898-1.353-2.954-4.108-3.514-1.953-.404-2.522-.924-2.522-1.543 0-.756.76-1.452 2.148-1.452 1.155 0 2.13.332 2.875.786l.794-2.022z"/></svg>` },
-];
-
-const backendModels = [
-  { model: "User & Role", desc: "Gestión de dueños y empleados con roles granulares." },
-  { model: "Client", desc: "CRM integrado: ficha, historial y control de deuda." },
-  { model: "Invoice & Quote", desc: "Cabeceras de facturación con relación One-to-Many a Items." },
-  { model: "TimeEntry", desc: "Registro horario con coordenadas GPS (LocationLog)." },
-  { model: "Expense", desc: "Deducibles con categorización fiscal para el Modelo 303." },
-  { model: "RecurringInvoice", desc: "Motor CRON para automatizar suscripciones mensuales." },
-];
-
-const features = [
+// --- DATOS DEL PROYECTO (Enfoque en Funcionalidad) ---
+const featureCategories = [
   {
-    title: "Facturación Inteligente",
-    desc: "De presupuesto a factura en un clic. Cálculos de IVA y Retenciones en tiempo real con Alpine.js. Generación de PDFs al vuelo con DomPDF y motor de facturas recurrentes.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>`,
-    colSpan: "md:col-span-2",
+    title: "Facturación y Presupuestos",
+    desc: "Control total sobre el ciclo de ingresos de tu negocio.",
+    items: [
+      "Ciclo de vida completo de facturas: Borrador, Enviada, Pagada y Vencida.",
+      "Creación y envío de presupuestos con conversión a factura en un solo clic tras su aceptación.",
+      "Generación y descarga de documentos en PDF, envío directo por correo electrónico y opción de duplicado.",
+      "Motor de facturas recurrentes para automatizar cobros periódicos (mensuales o anuales).",
+      "Vista pública mediante enlace seguro para que los clientes descarguen sus facturas sin necesidad de registrarse.",
+      "Integración de pasarela de pagos para cobros online directos."
+    ]
   },
   {
-    title: "TimeClock & GPS",
-    desc: "Fichaje con geolocalización. El sistema registra las coordenadas exactas de entrada y salida, mostrándolas en un mapa interactivo.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>`,
-    colSpan: "md:col-span-1",
+    title: "Gestión Financiera",
+    desc: "Control de gastos y previsiones fiscales automáticas.",
+    items: [
+      "Registro detallado de gastos con categorización fiscal y subida de comprobantes.",
+      "Cálculo en tiempo real de impuestos: IVA (Repercutido/Soportado) e IRPF.",
+      "Hucha Fiscal: Indicador inteligente que calcula cuánto debes guardar para las declaraciones trimestrales.",
+      "Exportación de reportes, listados de facturas y gastos en formatos Excel y CSV."
+    ]
   },
   {
-    title: "Hucha Fiscal",
-    desc: "El Dashboard calcula automáticamente la diferencia entre IVA Soportado y Repercutido, indicando exactamente cuánto guardar para Hacienda.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" /></svg>`,
-    colSpan: "md:col-span-1",
+    title: "CRM y Recursos Humanos",
+    desc: "Gestión de la relación con clientes y el equipo de trabajo.",
+    items: [
+      "Fichas completas de clientes con historial de facturación y control de deuda acumulada.",
+      "Gestión de perfiles de empleados con asignación de roles diferenciados.",
+      "Control horario para el registro de entradas y salidas de la jornada laboral.",
+      "Geolocalización con registro de coordenadas exactas al momento de fichar y visualización de rutas.",
+      "Panel personal para que cada empleado revise su historial de tiempos y ubicaciones."
+    ]
   },
   {
-    title: "Arquitectura SaaS & God Mode",
-    desc: "Multi-tenant seguro con suscripciones bloqueables. Panel 'God Mode' para el administrador general que permite Impersonation (loguearse como otro usuario para soporte).",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" /></svg>`,
-    colSpan: "md:col-span-2",
+    title: "Herramientas y Utilidades",
+    desc: "Optimizaciones para el flujo de trabajo diario.",
+    items: [
+      "Catálogo de productos y servicios para agilizar la creación de facturas y presupuestos.",
+      "Buscador global instantáneo para localizar clientes, documentos o artículos en toda la plataforma.",
+      "Sistema granular de roles y permisos (Dueño, Gestor, Empleado).",
+      "Centro de notificaciones y alertas internas para eventos importantes."
+    ]
   },
+  {
+    title: "Administración del Sistema",
+    desc: "Panel de control general para la gestión de la plataforma.",
+    items: [
+      "Control de acceso inteligente basado en el estado activo de la suscripción.",
+      "Panel de administración global con métricas clave del sistema.",
+      "Gestión centralizada de cuentas de usuario, incluyendo suspensiones y extensiones de servicio.",
+      "Sistema de suplantación segura de identidad (impersonation) para brindar soporte técnico directo.",
+      "Creación y gestión de cupones de descuento."
+    ]
+  }
 ];
 ---
 
 <style>
-  /* === ESTILOS NATIVOS AVANZADOS (SIN REACT) === */
-  
-  /* Gradiente animado para el texto principal */
+  /* === ESTILOS NATIVOS AVANZADOS === */
   .text-shine {
     background: linear-gradient(
       110deg,
@@ -73,33 +81,6 @@ const features = [
     to { background-position: 200% center; }
   }
 
-  /* Animación de marquesina infinita para stack tecnológico */
-  .marquee-track {
-    display: flex;
-    width: max-content;
-    animation: scroll 30s linear infinite;
-  }
-  .marquee-track:hover {
-    animation-play-state: paused;
-  }
-  @keyframes scroll {
-    to { transform: translateX(-50%); }
-  }
-
-  /* Efecto flotante para SVGs decorativos */
-  .float-slow {
-    animation: float 6s ease-in-out infinite;
-  }
-  .float-delayed {
-    animation: float 8s ease-in-out 3s infinite;
-  }
-  @keyframes float {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(2deg); }
-    100% { transform: translateY(0px) rotate(0deg); }
-  }
-
-  /* Glow en hover para las tarjetas tipo Bento */
   .glow-card {
     position: relative;
   }
@@ -120,61 +101,80 @@ const features = [
 </style>
 
 <Layout>
-<main class="overflow-x-hidden bg-sky-700 selection:bg-white/20 selection:text-white">
+<main class="overflow-x-hidden bg-sky-700 selection:bg-white/20 selection:text-white font-sans">
   
   <section class="relative min-h-[100svh] w-full flex flex-col items-center justify-center py-20 mb-20">
     <Header />
 
     <div class="absolute inset-0 z-0 opacity-25 bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)] bg-[size:18px_18px] pointer-events-none"></div>
 
-    <div class="absolute bottom-0 left-0 w-full h-[14vh] sm:h-[20vh] z-10 bg-linear-to-t from-cyan-700 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 w-full h-[14vh] sm:h-[20vh] z-10 bg-gradient-to-t from-cyan-700 to-transparent"></div>
 
     <div class="relative z-20 flex flex-col items-center max-w-5xl px-4 mt-16 text-center">
       
+      <span class="inline-block py-1 px-3 rounded-full bg-amber-500/20 text-amber-200 border border-amber-500/30 text-sm font-semibold tracking-wide mb-6 uppercase">
+        Actualmente en fase de desarrollo
+      </span>
 
-
-      <h1 class="text-6xl sm:text-7xl md:text-9xl font-extrabold leading-[1.08] tracking-tight text-shine pb-2 mt-10">
+      <h1 class="text-6xl sm:text-7xl md:text-9xl font-extrabold leading-[1.08] tracking-tight text-shine pb-2">
         Veltra
       </h1>
 
       <p class="mt-4 text-2xl md:text-3xl font-bold text-white/80 tracking-wide">
-        Gestion total en tu negocio
+        Gestión total para tu negocio
       </p>
 
       <p class="mt-6 text-base md:text-lg text-white/70 leading-relaxed max-w-2xl font-light">
-        Una aplicación web integral diseñada para autónomos y PYMES. Centraliza toda la facturación, gastos, CRM y recursos humanos en una interfaz moderna y veloz.
+        Una aplicación web integral diseñada para autónomos y pequeñas empresas. Actúa como el sistema operativo de tu negocio, centralizando facturación, gastos, clientes y equipo en una interfaz moderna y eficiente.
       </p>
 
       <div class="mt-10 flex flex-wrap justify-center gap-4">
-        <a href="#arquitectura" class="inline-flex items-center rounded-full text-sky-900 bg-white px-8 py-3.5 text-base sm:text-lg font-bold shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-white/50">
-          Ver Detalles Técnicos
+        <a href="#caracteristicas" class="inline-flex items-center rounded-full text-sky-900 bg-white px-8 py-3.5 text-base sm:text-lg font-bold shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-white/50">
+          Descubrir Funcionalidades
         </a>
-
       </div>
     </div>
-
   </section>
 
-  <div class="bg-linear-to-b from-cyan-700 via-cyan-950 to-zinc-950 relative">
+  <div class="bg-gradient-to-b from-cyan-700 via-cyan-950 to-zinc-950 relative">
     
     <section class="relative z-20 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 -mt-10 sm:-mt-20">
       <div class="rounded-3xl border border-white/20 bg-white/10 p-2 sm:p-4 backdrop-blur-xl shadow-2xl shadow-black/50 transition duration-700 hover:-translate-y-2">
-        <div class="flex gap-2 mb-3 mt-1 ml-2">
-
-        </div>
         <div class="relative overflow-hidden rounded-2xl bg-zinc-900 border border-white/10">
           <img 
             src="/1.png" 
-            alt="Dashboard FinanceFlow" 
+            alt="Dashboard General de Veltra" 
             class="w-full h-auto object-cover opacity-90 transition-transform duration-700 hover:scale-[1.01]"
           />
         </div>
       </div>
     </section>
 
+    <section id="caracteristicas" class="relative z-20 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-24">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Todo lo que necesitas en un solo lugar</h2>
+        <p class="text-white/70 text-lg max-w-2xl mx-auto">Centraliza tus operaciones diarias con herramientas pensadas específicamente para ahorrarte tiempo y darte tranquilidad financiera.</p>
+      </div>
 
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {featureCategories.map((category) => (
+          <div class="glow-card rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-colors hover:bg-white/10">
+            <h3 class="text-2xl font-bold text-white mb-2">{category.title}</h3>
+            <p class="text-sky-200/80 mb-6 text-sm">{category.desc}</p>
+            <ul class="space-y-3">
+              {category.items.map((item) => (
+                <li class="flex items-start text-white/80 text-sm leading-relaxed">
+                  <span class="mr-3 mt-1 block w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
 
-    <section class="relative z-20 py-24 text-center">
+    <section class="relative z-20 py-16 text-center">
       <div class="mx-auto max-w-2xl px-4">
         <h2 class="text-3xl font-bold text-white mb-8">Explora el resto del Portfolio</h2>
         <a
@@ -191,11 +191,10 @@ const features = [
       <Footer />
     </div>
 
-  </div> </main>
+  </div> 
+</main>
 
 <script>
-  // Script nativo súper ligero para manejar el efecto "Glow" siguiendo el cursor 
-  // en las tarjetas de funcionalidades (Bento Grid) sin usar React.
   if (typeof window !== "undefined") {
     const handleOnMouseMove = (e) => {
       const target = e.currentTarget;
@@ -212,4 +211,4 @@ const features = [
     });
   }
 </script>
- </Layout>
+</Layout>
