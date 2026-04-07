@@ -614,6 +614,7 @@ const marqueeRepeats = 10;
               class="w-full max-w-2xl rounded-3xl border border-white/12 bg-white/10 p-5 sm:p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7"
               method="post"
               action="/send-mail.php"
+              accept-charset="UTF-8"
             >
               <div class="grid gap-4 md:grid-cols-2">
                 <div class="md:col-span-1">
@@ -624,6 +625,8 @@ const marqueeRepeats = 10;
                     id="name"
                     name="name"
                     type="text"
+                    autocomplete="name"
+                    required
                     placeholder="Tu nombre"
                     class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base md:text-sm text-white placeholder:text-white/45
                            outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
@@ -641,6 +644,9 @@ const marqueeRepeats = 10;
                     id="email"
                     name="email"
                     type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    required
                     placeholder="tucorreo@ejemplo.com"
                     class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base md:text-sm text-white placeholder:text-white/45
                            outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
@@ -658,6 +664,7 @@ const marqueeRepeats = 10;
                     id="subject"
                     name="subject"
                     type="text"
+                    required
                     placeholder="Ej: Web con panel + login"
                     class="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base md:text-sm text-white placeholder:text-white/45
                            outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
@@ -675,6 +682,8 @@ const marqueeRepeats = 10;
                     id="message"
                     name="message"
                     rows="6"
+                    minlength="10"
+                    required
                     placeholder="Cuéntame el objetivo, funcionalidades y plazo aproximado..."
                     class="mt-2 w-full resize-none rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base md:text-sm text-white placeholder:text-white/45
                            outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/25"
