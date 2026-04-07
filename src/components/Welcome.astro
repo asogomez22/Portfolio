@@ -613,9 +613,14 @@ const marqueeRepeats = 10;
             <form
               class="w-full max-w-2xl rounded-3xl border border-white/12 bg-white/10 p-5 sm:p-6 backdrop-blur-md shadow-lg shadow-black/25 md:p-7"
               method="post"
-              action="/send-mail.php"
+              action="https://formsubmit.co/asogomez22@gmail.com"
               accept-charset="UTF-8"
             >
+              <input type="hidden" name="_next" value="https://asogom.es/?status=success#contacto" />
+              <input type="hidden" name="_subject" value="Nuevo mensaje desde el portfolio" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+              <input type="hidden" name="_replyto" value="" />
               <div class="grid gap-4 md:grid-cols-2">
                 <div class="md:col-span-1">
                   <label for="name" class="text-xs font-semibold text-white/80">
@@ -735,6 +740,34 @@ const marqueeRepeats = 10;
 
     const urlParams = new URLSearchParams(window.location.search);
     const status = urlParams.get("status");
+    const form = document.querySelector('#contacto form');
+    const nextInput = form?.querySelector('input[name="_next"]');
+    const replyToInput = form?.querySelector('input[name="_replyto"]');
+    const subjectMetaInput = form?.querySelector('input[name="_subject"]');
+    const emailField = document.getElementById("email");
+    const subjectField = document.getElementById("subject");
+
+    if (nextInput instanceof HTMLInputElement) {
+      nextInput.value = `${window.location.origin}/?status=success#contacto`;
+    }
+
+    const syncFormSubmitFields = () => {
+      if (replyToInput instanceof HTMLInputElement && emailField instanceof HTMLInputElement) {
+        replyToInput.value = emailField.value.trim();
+      }
+
+      if (subjectMetaInput instanceof HTMLInputElement && subjectField instanceof HTMLInputElement) {
+        const baseSubject = subjectField.value.trim();
+        subjectMetaInput.value = baseSubject
+          ? `Portfolio: ${baseSubject}`
+          : "Nuevo mensaje desde el portfolio";
+      }
+    };
+
+    emailField?.addEventListener("input", syncFormSubmitFields);
+    subjectField?.addEventListener("input", syncFormSubmitFields);
+    form?.addEventListener("submit", syncFormSubmitFields);
+    syncFormSubmitFields();
 
     if (status === "success") {
       const btn = document.getElementById("submitButton");
