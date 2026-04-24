@@ -44,15 +44,21 @@ const inetumBullets = [
   "Entrada a proyecto real para cliente como Full Stack",
 ];
 
-const projects = [
-  {
-    title: "Veltra",
-    img: "/1.png",
-    desc: "SaaS integral para autónomos y PYMES: facturación, gastos, CRM, recursos humanos y administración en un solo lugar.",
-    tags: ["SaaS", "Laravel", "Tailwind", "Stripe"],
-    featured: true,
-    links: [{ label: "Ver detalles", href: "/veltra" }],
-  },
+type ProjectLink = {
+  label: string;
+  href: string;
+};
+
+type Project = {
+  title: string;
+  img: string;
+  desc: string;
+  tags: string[];
+  links: ProjectLink[];
+  featured?: boolean;
+};
+
+const projects: Project[] = [
     {
     title: "Lift Ingeniería",
     img: "/lift.png",
@@ -91,7 +97,7 @@ const projects = [
     desc: "Tienda Online con panel de administracion y pasarela de pago integrada",
     tags: ["Laravel", "Tailwind", "Stripe"],
     links: [
-      { label: "Ver web", href: "hhttps://tiendaprueba.tarracowebs.com" },
+      { label: "Ver web", href: "https://tiendaprueba.tarracowebs.com" },
     ],
   },
 ];
@@ -133,7 +139,7 @@ const marqueeRepeats = 10;
 
   <!-- HERO -->
   <section
-    class="relative min-h-[100svh] md:min-h-[100dvh] w-full overflow-hidden flex flex-col items-center justify-center gap-4 py-20 sm:py-24"
+    class="relative min-h-svh md:min-h-dvh w-full overflow-hidden flex flex-col items-center justify-center gap-4 py-20 sm:py-24"
   >
     <Header />
 
@@ -247,7 +253,7 @@ const marqueeRepeats = 10;
           <div class="md:col-span-5">
             <div class="flex items-center justify-center">
               <div
-                class="relative h-[280px] w-[280px] xs:h-[320px] xs:w-[320px] sm:h-[360px] sm:w-[360px] md:h-[420px] md:w-[420px]"
+                class="relative h-70 w-70 xs:h-[320px] xs:w-[320px] sm:h-90 sm:w-90 md:h-105 md:w-105"
               >
                 <CircularText
                   client:only="react"
@@ -332,7 +338,7 @@ const marqueeRepeats = 10;
     </section>
 
     <!-- EXPERIENCIA -->
-    <section id="experiencia" class="relative min-h-[100svh] overflow-hidden">
+    <section id="experiencia" class="relative min-h-svh overflow-hidden">
       <div
         aria-hidden="true"
         class="pointer-events-none absolute inset-0 z-0 opacity-20
@@ -386,7 +392,7 @@ const marqueeRepeats = 10;
               <span
                 class="w-fit rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80"
               >
-                Octubre 2025 — Actualidad
+                Octubre 2025 — Abril 2026
               </span>
             </div>
 
@@ -575,7 +581,7 @@ const marqueeRepeats = 10;
         aria-hidden="true"
         class="pointer-events-none absolute inset-0 z-0 opacity-25
                bg-[radial-gradient(rgba(255,255,255,0.70)_1px,transparent_1px)]
-               [background-size:18px_18px]"
+               bg-size-[18px_18px]"
       >
       </div>
 
