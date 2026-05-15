@@ -44,20 +44,50 @@ const inetumBullets = [
   "Entrada a proyecto real para cliente como Full Stack",
 ];
 
+const educationItems = [
+  {
+    title: "Desarrollo de Aplicaciones Web",
+    place: "Formación profesional / estudios de desarrollo web",
+    date: "2024 - 2026",
+    desc: "Formación centrada en desarrollo frontend, backend, bases de datos, despliegue y creación de aplicaciones web completas.",
+    tags: ["HTML", "CSS", "JavaScript", "PHP", "Bases de datos"],
+  },
+  {
+    title: "Prácticas en empresa",
+    place: "Inetum",
+    date: "Octubre 2025 - Abril 2026",
+    desc: "Experiencia formativa en entorno profesional, trabajo en equipo y entrada a proyecto real como perfil Full Stack.",
+    tags: ["Full Stack", "Equipo", "Proyecto real"],
+  },
+];
+
+const projectFilters = [
+  { label: "Todos", value: "all" },
+  { label: "Full Stack", value: "full-stack" },
+  { label: "Frontend", value: "frontend" },
+  { label: "Backend", value: "backend" },
+  { label: "Laravel", value: "laravel" },
+  { label: "React", value: "react" },
+  { label: "Symfony", value: "symfony" },
+  { label: "Tailwind", value: "tailwind" },
+];
+
 const projects = [
   {
     title: "PlanEat",
     img: "/1.png",
     desc: "Proyecto final de curso: App Web que permite a los usuarios crear y gestionar sus planes de comida semanales, con recetas, listas de compra y recomendaciones personalizadas.",
     tags: ["Symfony", "React", "Tailwind", "Stripe"],
+    filters: ["full-stack", "frontend", "backend", "symfony", "react", "tailwind"],
     featured: true,
     links: [{ label: "Ver web", href: "https://planeat.es" }],
   },
-    {
+  {
     title: "Lift Ingeniería",
     img: "/lift.png",
     desc: "Web con autenticación y sistema CMS para que el cliente pueda añadir y gestionar contenido.",
     tags: ["Laravel", "Tailwind", "Escalable"],
+    filters: ["full-stack", "backend", "laravel", "tailwind"],
     links: [{ label: "Ver web", href: "https://lift-es.com" }],
   },
   {
@@ -65,13 +95,13 @@ const projects = [
     img: "/afp.png",
     desc: "Blog dedicado a Guns N'Roses. Publicación de artículos y exploración de la banda.",
     tags: ["React", "FastAPI", "GSAP", "CRUD"],
+    filters: ["full-stack", "frontend", "backend", "react"],
     links: [
       {
         label: "GitHub",
         href: "https://github.com/asogomez22/Appetite-For-Posts",
-        
-      },      { label: "Ver web", href: "https://asogom.es" },
-
+      },
+      { label: "Ver web", href: "https://appetiteforposts.com" },
     ],
   },
   {
@@ -79,9 +109,10 @@ const projects = [
     img: "/portfolio.png",
     desc: "Landing personal con foco en diseño, rendimiento y experiencia visual.",
     tags: ["UI/UX", "Animaciones", "Responsive", "Astro"],
+    filters: ["frontend", "astro", "tailwind"],
     links: [
       { label: "GitHub", href: "https://github.com/asogomez22/portfolio" },
-      { label: "Ver web", href: "https://appetiteforposts.com" },
+      { label: "Ver web", href: "https://asogom.es" },
     ],
   },
 
@@ -90,8 +121,9 @@ const projects = [
     img: "/aurea.png",
     desc: "Tienda Online con panel de administracion y pasarela de pago integrada",
     tags: ["Laravel", "Tailwind", "Stripe"],
+    filters: ["full-stack", "backend", "laravel", "tailwind"],
     links: [
-      { label: "Ver web", href: "hhttps://tiendaprueba.tarracowebs.com" },
+      { label: "Ver web", href: "https://tiendaprueba.tarracowebs.com" },
     ],
   },
 ];
@@ -133,6 +165,7 @@ const marqueeRepeats = 10;
 
   <!-- HERO -->
   <section
+    id="top"
     class="relative min-h-[100svh] md:min-h-[100dvh] w-full overflow-hidden flex flex-col items-center justify-center gap-4 py-20 sm:py-24"
   >
     <Header />
@@ -427,12 +460,33 @@ const marqueeRepeats = 10;
               </div>
             </div>
 
+            <div class="mt-5 flex flex-wrap gap-2" aria-label="Filtrar proyectos">
+              {
+                projectFilters.map((filter) => (
+                  <button
+                    type="button"
+                    data-project-filter={filter.value}
+                    aria-pressed={filter.value === "all" ? "true" : "false"}
+                    class={`rounded-full border px-3 py-1.5 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45 ${
+                      filter.value === "all"
+                        ? "border-white/35 bg-white/25 text-white"
+                        : "border-white/12 bg-white/10 text-white/75 hover:bg-white/15 hover:text-white"
+                    }`}
+                  >
+                    {filter.label}
+                  </button>
+                ))
+              }
+            </div>
+
             <div
               class="mt-6 mx-auto grid w-full max-w-5xl grid-cols-2 gap-3 sm:gap-4"
             >
               {
                 projects.map((p) => (
                   <article
+                    data-project-card
+                    data-project-filters={p.filters.join(" ")}
                     class={`group w-full overflow-hidden rounded-2xl border border-white/12 bg-white/10
                            shadow-md shadow-black/20 transition
                            hover:-translate-y-0.5 hover:bg-white/15 hover:border-white/20
@@ -443,7 +497,7 @@ const marqueeRepeats = 10;
                     <div class="relative h-32 sm:h-40 w-full bg-black/20">
                       <img
                         src={p.img}
-                        alt={p.title}
+                        alt={`Captura del proyecto ${p.title}`}
                         loading="lazy"
                         class="h-full w-full object-cover"
                       />
@@ -496,6 +550,62 @@ const marqueeRepeats = 10;
               }
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="formacion" class="relative overflow-hidden">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 z-0 opacity-20
+               bg-[radial-gradient(rgba(255,255,255,0.65)_1px,transparent_1px)]
+               bg-size-[18px_18px]"
+      >
+      </div>
+
+      <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-14 sm:py-16 md:py-24">
+        <header class="mx-auto max-w-3xl text-center text-white">
+          <p class="mb-3 inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/70">
+            <span class="h-px w-8 sm:w-10 bg-white/30"></span>
+            Formación
+            <span class="h-px w-8 sm:w-10 bg-white/30"></span>
+          </p>
+
+          <h2 class="text-2xl xs:text-3xl font-extrabold leading-tight md:text-4xl">
+            Formación y certificados
+          </h2>
+
+          <p class="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
+            Estudios, prácticas y aprendizajes relacionados con el desarrollo web.
+          </p>
+        </header>
+
+        <div class="mt-10 sm:mt-12 grid gap-5 md:grid-cols-2">
+          {
+            educationItems.map((item) => (
+              <article class="rounded-3xl border border-white/12 bg-white/10 p-5 sm:p-6 backdrop-blur-md shadow-lg shadow-black/25 transition hover:bg-white/12 hover:border-white/18">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 class="text-lg font-extrabold tracking-tight text-white">{item.title}</h3>
+                    <p class="mt-1 text-sm font-semibold text-white/75">{item.place}</p>
+                  </div>
+                  <span class="w-fit rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
+                    {item.date}
+                  </span>
+                </div>
+
+                <p class="mt-4 text-sm leading-relaxed text-white/75">{item.desc}</p>
+
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span class="rounded-full border border-white/12 bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-white/80">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -735,6 +845,34 @@ const marqueeRepeats = 10;
         document.body.appendChild(link);
         link.click();
         link.remove();
+      });
+    });
+
+    const filterButtons = Array.from(document.querySelectorAll("[data-project-filter]"));
+    const projectCards = Array.from(document.querySelectorAll("[data-project-card]"));
+
+    const setProjectFilter = (activeFilter) => {
+      filterButtons.forEach((button) => {
+        const isActive = button.dataset.projectFilter === activeFilter;
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("border-white/35", isActive);
+        button.classList.toggle("bg-white/25", isActive);
+        button.classList.toggle("text-white", isActive);
+        button.classList.toggle("border-white/12", !isActive);
+        button.classList.toggle("bg-white/10", !isActive);
+        button.classList.toggle("text-white/75", !isActive);
+      });
+
+      projectCards.forEach((card) => {
+        const filters = card.dataset.projectFilters?.split(" ") ?? [];
+        const shouldShow = activeFilter === "all" || filters.includes(activeFilter);
+        card.classList.toggle("hidden", !shouldShow);
+      });
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setProjectFilter(button.dataset.projectFilter || "all");
       });
     });
 
