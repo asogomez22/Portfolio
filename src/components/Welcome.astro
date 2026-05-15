@@ -46,18 +46,32 @@ const inetumBullets = [
 
 const educationItems = [
   {
-    title: "Desarrollo de Aplicaciones Web",
-    place: "Formación profesional / estudios de desarrollo web",
-    date: "2024 - 2026",
-    desc: "Formación centrada en desarrollo frontend, backend, bases de datos, despliegue y creación de aplicaciones web completas.",
-    tags: ["HTML", "CSS", "JavaScript", "PHP", "Bases de datos"],
+    title: "Aprende a programar en Python",
+    place: "OpenWebinars",
+    desc: "Certificado de fundamentos de programación con Python.",
+    href: "https://openwebinars.net/certificacion/KY0ZHa8u?type=png",
+    tags: ["Python", "Programación", "Fundamentos"],
   },
   {
-    title: "Prácticas en empresa",
-    place: "Inetum",
-    date: "Octubre 2025 - Abril 2026",
-    desc: "Experiencia formativa en entorno profesional, trabajo en equipo y entrada a proyecto real como perfil Full Stack.",
-    tags: ["Full Stack", "Equipo", "Proyecto real"],
+    title: "Python desde 0",
+    place: "OpenWebinars",
+    desc: "Certificado de aprendizaje inicial de Python desde cero.",
+    href: "https://openwebinars.net/certificacion/odVkYG2x?type=png",
+    tags: ["Python", "Desde cero"],
+  },
+  {
+    title: "Hacking Web",
+    place: "OpenWebinars",
+    desc: "Certificado orientado a seguridad y hacking web.",
+    href: "https://openwebinars.net/cert/Lfyz",
+    tags: ["Seguridad", "Web", "Hacking"],
+  },
+  {
+    title: "PHP Fundamentos",
+    place: "OpenWebinars",
+    desc: "Certificado de fundamentos de PHP.",
+    href: "https://openwebinars.net/certificacion/GwNM5oDv?type=png",
+    tags: ["PHP", "Backend", "Fundamentos"],
   },
 ];
 
@@ -589,9 +603,14 @@ const marqueeRepeats = 10;
                     <h3 class="text-lg font-extrabold tracking-tight text-white">{item.title}</h3>
                     <p class="mt-1 text-sm font-semibold text-white/75">{item.place}</p>
                   </div>
-                  <span class="w-fit rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
-                    {item.date}
-                  </span>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-fit rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80 transition hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/45"
+                  >
+                    Ver certificado
+                  </a>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-white/75">{item.desc}</p>
